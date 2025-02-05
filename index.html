@@ -1,87 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Log - Simple & Free Workout Tracker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #fff;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        .hero {
-            padding: 50px 20px;
-        }
-        .hero h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            opacity: 0.8;
-        }
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 40px 20px;
-        }
-        .feature {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .cta {
-            margin-top: 30px;
-        }
-        .cta a {
-            display: inline-block;
-            background: #ff4500;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.2em;
-        }
-        .cta a:hover {
-            background: #e63e00;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RepVault - Simple & Free Workout Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #1E3A5F;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, #1E3A5F, #345B85);
+      padding: 80px 20px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      overflow: hidden;
+    }
+    .hero svg.bg-shape {
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 140%;
+      height: auto;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+    .hero p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .cta {
+      margin-top: 30px;
+    }
+    .cta a {
+      display: inline-block;
+      background: #2A6F4B;
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: background 0.3s ease;
+    }
+    .cta a:hover {
+      background: #1E3A5F;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+      padding: 60px 20px;
+      background-color: #F5F5F5;
+      color: #1E1E1E;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .feature {
+      background: #E0E0E0;
+      padding: 30px;
+      border-radius: 10px;
+      flex: 1 1 280px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .feature i {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #FF6F61;
+    }
+    .feature h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    .extra-info {
+      padding: 40px 20px;
+      background: #FFFFFF;
+      color: #1E1E1E;
+      border-radius: 20px;
+      margin-top: 20px;
+      position: relative;
+    }
+    .extra-info svg.divider {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      height: auto;
+    }
+    .extra-info h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .extra-info p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    footer {
+      padding: 20px;
+      background: #1E3A5F;
+      font-size: 0.9em;
+      color: #FFFFFF;
+      margin-top: 20px;
+      border-radius: 20px;
+    }
+    footer p {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>Workout Log</h1>
-            <p>The simple, free, and offline workout tracking app. No ads, no subscriptions – just pure fitness tracking.</p>
-            <div class="cta">
-                <a href="#">Download Now</a>
-            </div>
+  <div class="container">
+    <div class="hero">
+      <svg class="bg-shape" viewBox="0 0 800 600" preserveAspectRatio="none">
+        <path d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="#FFFFFF" />
+      </svg>
+      <div class="hero-content">
+        <h1>RepVault</h1>
+        <p>Your ultimate companion for tracking, analyzing, and improving your workouts. Simple, free, and always offline.</p>
+        <div class="cta">
+          <a href="#"><i class="fas fa-download"></i> Download Now</a>
         </div>
-        
-        <div class="features">
-            <div class="feature">
-                <h2>✔ Create & Customize Workouts</h2>
-                <p>Design your own workout routines tailored to your fitness goals.</p>
-            </div>
-            <div class="feature">
-                <h2>✔ Log Sets, Reps & Weights</h2>
-                <p>Track every detail of your workout effortlessly.</p>
-            </div>
-            <div class="feature">
-                <h2>✔ Stay Offline</h2>
-                <p>No internet? No problem! Your data is saved on your device.</p>
-            </div>
-        </div>
+      </div>
     </div>
+
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-dumbbell"></i>
+        <h2>Create &amp; Customize Workouts</h2>
+        <p>Design routines tailored to your fitness goals with our fully customizable workout builder.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-chart-line"></i>
+        <h2>Track Your Progress</h2>
+        <p>Monitor sets, reps, and weights with detailed analytics that keep you motivated.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-wifi-slash"></i>
+        <h2>Stay Offline</h2>
+        <p>Your data is securely stored on your device—no internet required.</p>
+      </div>
+    </div>
+
+    <div class="extra-info">
+      <svg class="divider" viewBox="0 0 1200 100" preserveAspectRatio="none">
+        <path d="M0,0 C600,100 600,100 1200,0 L1200,100 L0,100 Z" fill="#F5F5F5" />
+      </svg>
+      <h3>Be Among the First</h3>
+      <p>RepVault is just getting started. Experience an intuitive design that puts you in control of your fitness journey.</p>
+      <p>Lightweight and built for efficiency, RepVault is designed for those who already know exactly how they want to work out.</p>
+      <p>Spend less time clicking and more time training. Be a pioneer and help shape the future of RepVault.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 RepVault. All rights reserved.</p>
+    <p>Marcus Lorenzana</p>
+    <p>info@lorenzanadesigns.com</p>
+  </footer>
 </body>
 </html>
