@@ -6,6 +6,9 @@
   <title>RepVault - Simple & Free Workout Tracker</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -14,7 +17,6 @@
       color: #FFFFFF;
       text-align: center;
       line-height: 1.6;
-      position: relative;
       overflow-x: hidden;
     }
     .hero {
@@ -71,10 +73,10 @@
       margin: 40px auto 0;
       padding: 0 20px;
     }
+    /* Features grid: Desktop: 2 columns with third card spanning both */
     .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
       padding: 60px 20px;
       background-color: #F5F5F5;
@@ -87,7 +89,6 @@
       background: #E0E0E0;
       padding: 30px;
       border-radius: 10px;
-      flex: 1 1 280px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .feature:hover {
@@ -102,6 +103,10 @@
     .feature h2 {
       font-size: 1.5em;
       margin-bottom: 10px;
+    }
+    /* Make third card span across both columns on desktop */
+    .features .feature:nth-child(3) {
+      grid-column: 1 / -1;
     }
     .extra-info {
       padding: 40px 20px;
@@ -136,6 +141,20 @@
     }
     footer p {
       margin: 5px 0;
+    }
+    /* Mobile: single column grid */
+    @media (max-width: 600px) {
+      .hero svg.bg-shape {
+        left: 0;
+        width: 100%;
+      }
+      .features {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      .features .feature {
+        grid-column: auto;
+      }
     }
   </style>
 </head>
@@ -186,7 +205,7 @@
   <footer>
     <p>&copy; 2025 RepVault. All rights reserved.</p>
     <p>Marcus Lorenzana</p>
-    <a style="color: white;" href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a>
+    <p>info@lorenzanadesigns.com</p>
   </footer>
 </body>
 </html>
