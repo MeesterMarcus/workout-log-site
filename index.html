@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
       padding: 0;
       background-color: #1E3A5F;
       color: #FFFFFF;
@@ -17,14 +17,9 @@
       position: relative;
       overflow-x: hidden;
     }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      position: relative;
-      z-index: 1;
-    }
     .hero {
       position: relative;
+      width: 100%;
       background: linear-gradient(135deg, #1E3A5F, #345B85);
       padding: 80px 20px;
       border-top-left-radius: 20px;
@@ -43,6 +38,8 @@
     .hero-content {
       position: relative;
       z-index: 1;
+      max-width: 1000px;
+      margin: auto;
     }
     .hero h1 {
       font-size: 3em;
@@ -68,6 +65,11 @@
     }
     .cta a:hover {
       background: #1E3A5F;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto 0;
+      padding: 0 20px;
     }
     .features {
       display: flex;
@@ -128,8 +130,9 @@
       background: #1E3A5F;
       font-size: 0.9em;
       color: #FFFFFF;
-      margin-top: 20px;
+      margin: 20px auto;
       border-radius: 20px;
+      max-width: 1000px;
     }
     footer p {
       margin: 5px 0;
@@ -137,20 +140,20 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <svg class="bg-shape" viewBox="0 0 800 600" preserveAspectRatio="none">
-        <path d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="#FFFFFF" />
-      </svg>
-      <div class="hero-content">
-        <h1>RepVault</h1>
-        <p>Your ultimate companion for tracking, analyzing, and improving your workouts. Simple, free, and always offline.</p>
-        <div class="cta">
-          <a href="#"><i class="fas fa-download"></i> Download Now</a>
-        </div>
+  <div class="hero">
+    <svg class="bg-shape" viewBox="0 0 800 600" preserveAspectRatio="none">
+      <path d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="#FFFFFF" />
+    </svg>
+    <div class="hero-content">
+      <h1>RepVault</h1>
+      <p>Your ultimate companion for tracking, analyzing, and improving your workouts. Simple, free, and always offline.</p>
+      <div class="cta">
+        <a href="#"><i class="fas fa-download"></i> Download Now</a>
       </div>
     </div>
+  </div>
 
+  <div class="container">
     <div class="features">
       <div class="feature">
         <i class="fas fa-dumbbell"></i>
@@ -183,7 +186,7 @@
   <footer>
     <p>&copy; 2025 RepVault. All rights reserved.</p>
     <p>Marcus Lorenzana</p>
-    <p>info@lorenzanadesigns.com</p>
+    <a style="color: white;" href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a>
   </footer>
 </body>
 </html>
