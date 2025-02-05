@@ -75,8 +75,9 @@
     }
     /* Features grid: Desktop: 2 columns with third card spanning both */
     .features {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
       gap: 30px;
       padding: 60px 20px;
       background-color: #F5F5F5;
@@ -89,6 +90,7 @@
       background: #E0E0E0;
       padding: 30px;
       border-radius: 10px;
+      flex: 1 1 280px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .feature:hover {
@@ -106,7 +108,7 @@
     }
     /* Make third card span across both columns on desktop */
     .features .feature:nth-child(3) {
-      grid-column: 1 / -1;
+      flex-basis: 100%;
     }
     .extra-info {
       padding: 40px 20px;
@@ -142,18 +144,18 @@
     footer p {
       margin: 5px 0;
     }
-    /* Mobile: single column grid */
+    /* Mobile: single column layout */
     @media (max-width: 600px) {
       .hero svg.bg-shape {
         left: 0;
         width: 100%;
       }
       .features {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         padding: 20px;
       }
-      .features .feature {
-        grid-column: auto;
+      .feature {
+        flex: 1 1 100%;
       }
     }
   </style>
@@ -167,7 +169,7 @@
       <h1>RepVault</h1>
       <p>Your ultimate companion for tracking, analyzing, and improving your workouts. Simple, free, and always offline.</p>
       <div class="cta">
-        <a href="#"><i class="fas fa-download"></i> Download Now</a>
+        <a href="#"><i class="fab fa-apple"></i> Download on the iOS App Store</a>
       </div>
     </div>
   </div>
