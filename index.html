@@ -4,213 +4,370 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RepVault - Simple & Free Workout Tracker</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
+    :root {
+      --bg-0: #f7f6f3;
+      --bg-1: #eef2f7;
+      --bg-2: #ffffff;
+      --panel: rgba(255, 255, 255, 0.7);
+      --panel-strong: rgba(220, 230, 242, 0.9);
+      --text: #1b2a41;
+      --muted: #495466;
+      --accent: #0a78a5;
+      --accent-2: #e07a5f;
+      --line: rgba(27, 42, 65, 0.15);
+      --shadow: 0 24px 60px rgba(27, 42, 65, 0.18);
     }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #1E3A5F;
-      color: #FFFFFF;
-      text-align: center;
-      line-height: 1.6;
+      font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(10, 120, 165, 0.18), transparent 60%),
+        radial-gradient(700px 380px at 85% 0%, rgba(224, 122, 95, 0.18), transparent 60%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2) 100%);
+      min-height: 100vh;
       overflow-x: hidden;
     }
-    .hero {
+    a { color: inherit; text-decoration: none; }
+    .page {
       position: relative;
-      width: 100%;
-      background: linear-gradient(135deg, #1E3A5F, #345B85);
-      padding: 80px 20px;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
+      padding: 28px 24px 60px;
+    }
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 18px rgba(27, 42, 65, 0.18);
+      border: 1px solid rgba(27, 42, 65, 0.12);
       overflow: hidden;
     }
-    .hero svg.bg-shape {
-      position: absolute;
-      top: -20%;
-      left: -20%;
-      width: 140%;
-      height: auto;
-      opacity: 0.15;
-      z-index: 0;
+    .logo-mark img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
     }
-    .hero-content {
+    .nav-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .pill {
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.5);
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .pill:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      align-items: center;
       position: relative;
       z-index: 1;
-      max-width: 1000px;
-      margin: auto;
     }
     .hero h1 {
-      font-size: 3em;
-      margin-bottom: 15px;
+      font-size: clamp(2.6rem, 4.4vw, 4.4rem);
+      margin: 0 0 18px;
+      line-height: 1.05;
     }
     .hero p {
-      font-size: 1.3em;
-      margin-bottom: 30px;
-      opacity: 0.9;
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0 0 26px;
+      max-width: 540px;
     }
-    .cta {
-      margin-top: 30px;
-    }
-    .cta a {
-      display: inline-block;
-      background: #2A6F4B;
-      color: #FFFFFF;
-      padding: 15px 30px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.2em;
-      transition: background 0.3s ease;
-    }
-    .cta a:hover {
-      background: #1E3A5F;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 40px auto 0;
-      padding: 0 20px;
-    }
-    /* Features grid: Desktop: 2 columns with third card spanning both */
-    .features {
+    .hero-cta {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 30px;
-      padding: 60px 20px;
-      background-color: #F5F5F5;
-      color: #1E1E1E;
-      border-bottom-left-radius: 20px;
-      border-bottom-right-radius: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      gap: 14px;
+      align-items: center;
     }
-    .feature {
-      background: #E0E0E0;
-      padding: 30px;
-      border-radius: 10px;
-      flex: 1 1 280px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .btn-primary {
+      padding: 14px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #2b6c61);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 16px 34px rgba(10, 120, 165, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .feature:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 44px rgba(10, 120, 165, 0.35);
     }
-    .feature i {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-      color: #FF6F61;
+    .btn-secondary {
+      padding: 12px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      color: var(--text);
     }
-    .feature h2 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-    /* Make third card span across both columns on desktop */
-    .features .feature:nth-child(3) {
-      flex-basis: 100%;
-    }
-    .extra-info {
-      padding: 40px 20px;
-      background: #FFFFFF;
-      color: #1E1E1E;
-      border-radius: 20px;
-      margin-top: 20px;
+    .hero-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
       position: relative;
+      overflow: hidden;
     }
-    .extra-info svg.divider {
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-      height: auto;
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(300px 120px at 90% 0%, rgba(10, 120, 165, 0.18), transparent 60%);
+      opacity: 0.8;
     }
-    .extra-info h3 {
-      font-size: 2em;
-      margin-bottom: 20px;
+    .hero-card-content {
+      position: relative;
+      z-index: 1;
     }
-    .extra-info p {
-      font-size: 1.1em;
-      margin-bottom: 10px;
+    .metric-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .metric {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(27, 42, 65, 0.08);
+      border: 1px solid rgba(27, 42, 65, 0.12);
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85rem;
+    }
+    .metric strong { color: var(--accent); }
+    .section {
+      max-width: 1100px;
+      margin: 80px auto 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      margin: 0 0 10px;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin: 0 0 30px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      min-height: 160px;
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(10, 120, 165, 0.5);
+    }
+    .feature-card i {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: center;
+      margin-top: 28px;
+    }
+    .cta-band {
+      margin-top: 80px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(10, 120, 165, 0.14), rgba(224, 122, 95, 0.14));
+      display: grid;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
     footer {
-      padding: 20px;
-      background: #1E3A5F;
-      font-size: 0.9em;
-      color: #FFFFFF;
-      margin: 20px auto;
-      border-radius: 20px;
-      max-width: 1000px;
+      max-width: 1100px;
+      margin: 60px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
     }
-    footer p {
-      margin: 5px 0;
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: rise 0.8s ease forwards;
     }
-    /* Mobile: single column layout */
-    @media (max-width: 600px) {
-      .hero svg.bg-shape {
-        left: 0;
-        width: 100%;
-      }
-      .features {
-        flex-direction: column;
-        padding: 20px;
-      }
-      .feature {
-        flex: 1 1 100%;
-      }
+    .reveal:nth-child(2) { animation-delay: 0.08s; }
+    .reveal:nth-child(3) { animation-delay: 0.16s; }
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 720px) {
+      .nav-actions { display: none; }
+      .hero-card { order: -1; }
+      .cta-band { text-align: center; }
+      footer { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <svg class="bg-shape" viewBox="0 0 800 600" preserveAspectRatio="none">
-      <path d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="#FFFFFF" />
-    </svg>
-    <div class="hero-content">
-      <h1>RepVault</h1>
-      <p>Your ultimate companion for tracking, analyzing, and improving your workouts. Simple, free, and always offline.</p>
-      <div class="cta">
-        <a href="#"><i class="fab fa-apple"></i> Download on the iOS App Store</a>
+  <div class="grain"></div>
+  <div class="page">
+    <nav class="nav">
+      <div class="logo">
+        <span class="logo-mark"><img src="assets/logo.png" alt="RepVault logo" /></span>
+        <span>RepVault</span>
       </div>
-    </div>
+      <div class="nav-actions">
+        <a class="pill" href="#features">Features</a>
+        <a class="pill" href="#flows">Workflow</a>
+        <a class="pill" href="/privacy-policy">Privacy</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="pill">Strength-focused workout tracker</div>
+        <h1 class="reveal">Build. Log. Progress.</h1>
+        <p class="reveal">RepVault is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
+        <div class="hero-cta reveal">
+          <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202">Download on the App Store</a>
+          <a class="btn-secondary" href="#features">See what it does</a>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <div class="hero-card-content">
+          <strong style="font-size: 1rem;">Workout Builder</strong>
+          <h3 style="margin: 8px 0 4px;">Create a Session</h3>
+          <p style="margin: 0 0 18px; color: var(--muted);">Pick exercises, set sets and reps, and save templates.</p>
+          <div class="metric-grid">
+            <div class="metric"><span>Bench Press</span><strong>4 x 6</strong></div>
+            <div class="metric"><span>Lat Pulldown</span><strong>4 x 10</strong></div>
+            <div class="metric"><span>DB Row</span><strong>3 x 12</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-title">Built for strength training.</h2>
+      <p class="section-sub">Create workouts, log sets and reps, track PRs, and review history in seconds.</p>
+      <div class="feature-grid">
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-sliders"></i>
+          <h3>Create workouts</h3>
+          <p>Build sessions by choosing exercises and setting sets and reps.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Track progress + PRs</h3>
+          <p>See improvements over time and highlight personal records.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Workout history</h3>
+          <p>Review past sessions and keep your training consistent.</p>
+        </div>
+        <div class="feature-card reveal">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <h3>AI-generated workouts</h3>
+          <p>Get a session built for your goals in seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="flows">
+      <h2 class="section-title">Everything you need to train well.</h2>
+      <p class="section-sub">Strength-focused tools, a detailed exercise library, and clear progress tracking.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i class="fa-solid fa-layer-group"></i>
+          <h3>Exercise library</h3>
+          <p>Demos, details, and muscle groups for every movement.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-dumbbell"></i>
+          <h3>Strength training focus</h3>
+          <p>Built for progressive overload and structured lifting.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-book-open"></i>
+          <h3>History that helps</h3>
+          <p>Review past workouts to keep your training consistent.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div>
+        <h2 class="section-title">Start logging today</h2>
+        <p class="section-sub">Create workouts, log sets and reps, and track PRs in one place.</p>
+      </div>
+      <div class="hero-cta">
+        <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202">View on the App Store</a>
+        <a class="btn-secondary" href="mailto:info@lorenzanadesigns.com">Support email</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>&copy; 2026 RepVault. All rights reserved.</span>
+      <span>Marcus Lorenzana</span>
+      <span><a href="/privacy-policy">Privacy Policy</a></span>
+    </footer>
   </div>
-
-  <div class="container">
-    <div class="features">
-      <div class="feature">
-        <i class="fas fa-dumbbell"></i>
-        <h2>Create &amp; Customize Workouts</h2>
-        <p>Design routines tailored to your fitness goals with our fully customizable workout builder.</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-chart-line"></i>
-        <h2>Track Your Progress</h2>
-        <p>Monitor sets, reps, and weights with detailed analytics that keep you motivated.</p>
-      </div>
-      <div class="feature">
-        <i class="fas fa-wifi-slash"></i>
-        <h2>Stay Offline</h2>
-        <p>Your data is securely stored on your device—no internet required.</p>
-      </div>
-    </div>
-
-    <div class="extra-info">
-      <svg class="divider" viewBox="0 0 1200 100" preserveAspectRatio="none">
-        <path d="M0,0 C600,100 600,100 1200,0 L1200,100 L0,100 Z" fill="#F5F5F5" />
-      </svg>
-      <h3>Be Among the First</h3>
-      <p>RepVault is just getting started. Experience an intuitive design that puts you in control of your fitness journey.</p>
-      <p>Lightweight and built for efficiency, RepVault is designed for those who already know exactly how they want to work out.</p>
-      <p>Spend less time clicking and more time training. Be a pioneer and help shape the future of RepVault.</p>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 RepVault. All rights reserved.</p>
-    <p>Marcus Lorenzana</p>
-    <p>
-      info@lorenzanadesigns.com | 
-      <a href="privacy-policy.html" style="color: #FFFFFF; text-decoration: underline;">Privacy Policy</a>
-    </p>
-  </footer>  
 </body>
 </html>
