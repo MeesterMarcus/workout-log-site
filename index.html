@@ -84,6 +84,9 @@
       align-items: center;
     }
     .pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
       padding: 10px 16px;
       border-radius: 999px;
       font-size: 0.9rem;
@@ -91,6 +94,9 @@
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.5);
       transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .hero .pill {
+      margin: 0 0 18px;
     }
     .pill:hover {
       transform: translateY(-2px);
