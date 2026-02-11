@@ -87,6 +87,16 @@
       background: rgba(255, 255, 255, 0.5);
       transition: transform 0.2s ease, border 0.2s ease;
     }
+    button.pill {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
     .pill:hover {
       transform: translateY(-2px);
       border-color: rgba(27, 42, 65, 0.4);
@@ -148,41 +158,132 @@
   <div class="page">
     <nav class="nav">
       <a class="logo" href="../">
-        <span class="logo-mark"><img src="../assets/logo.png" alt="IronStack logo" /></span>
+        <span class="logo-mark"><img src="../assets/logo.png" alt="IronStack logo" data-i18n-alt="logoAlt" /></span>
         <span>IronStack</span>
       </a>
-      <a class="pill" href="../">Back to home</a>
+      <div class="nav-actions">
+        <a class="pill" href="../" data-i18n="backHome">Back to home</a>
+        <button class="pill" id="lang-toggle" type="button" aria-label="Switch language">Español</button>
+      </div>
     </nav>
 
     <header class="header">
-      <h1>Privacy Policy</h1>
-      <p>Simple, transparent, and built around offline-first training.</p>
+      <h1 data-i18n="privacyTitle">Privacy Policy</h1>
+      <p data-i18n="privacySubtitle">Simple, transparent, and built around offline-first training.</p>
     </header>
 
     <section class="card">
-      <h2>What we collect</h2>
-      <p>IronStack does not run analytics, ad tracking, or third-party behavior tracking. We do not sell your data.</p>
-      <p>Most of your workout data stays on your device. The app is offline-friendly and works without an internet connection for core logging and history.</p>
+      <h2 data-i18n="collectTitle">What we collect</h2>
+      <p data-i18n="collectP1">IronStack does not run analytics, ad tracking, or third-party behavior tracking. We do not sell your data.</p>
+      <p data-i18n="collectP2">Most of your workout data stays on your device. The app is offline-friendly and works without an internet connection for core logging and history.</p>
 
-      <h2>When we contact our servers</h2>
-      <p>IronStack only connects to our servers for two reasons:</p>
+      <h2 data-i18n="serversTitle">When we contact our servers</h2>
+      <p data-i18n="serversP1">IronStack only connects to our servers for two reasons:</p>
       <ul class="list">
-        <li>Generate AI workouts when you request them.</li>
-        <li>Fetch exercise demo media (WebP images) and related exercise details.</li>
+        <li data-i18n="serversLi1">Generate AI workouts when you request them.</li>
+        <li data-i18n="serversLi2">Fetch exercise demo media (WebP images) and related exercise details.</li>
       </ul>
 
-      <h2>Your data</h2>
-      <p>We only send the minimum information needed to complete AI generation requests or load exercise media. We do not store or share your workout history for analytics or advertising.</p>
+      <h2 data-i18n="dataTitle">Your data</h2>
+      <p data-i18n="dataP1">We only send the minimum information needed to complete AI generation requests or load exercise media. We do not store or share your workout history for analytics or advertising.</p>
 
-      <h2>Contact</h2>
-      <p>If you have any questions, reach out at <a href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a>.</p>
+      <h2 data-i18n="contactTitle">Contact</h2>
+      <p><span data-i18n="contactP1">If you have any questions, reach out at </span><a href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a>.</p>
     </section>
 
     <footer>
-      <span>&copy; 2026 IronStack. All rights reserved.</span>
+      <span data-i18n="footerRights">&copy; 2026 IronStack. All rights reserved.</span>
       <span>Marcus Lorenzana</span>
       <span><a href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a></span>
     </footer>
   </div>
+  <script>
+    (function () {
+      const STORAGE_KEY = "ironstack-language";
+      const translations = {
+        en: {
+          pageTitle: "IronStack Privacy Policy",
+          logoAlt: "IronStack logo",
+          backHome: "Back to home",
+          privacyTitle: "Privacy Policy",
+          privacySubtitle: "Simple, transparent, and built around offline-first training.",
+          collectTitle: "What we collect",
+          collectP1: "IronStack does not run analytics, ad tracking, or third-party behavior tracking. We do not sell your data.",
+          collectP2: "Most of your workout data stays on your device. The app is offline-friendly and works without an internet connection for core logging and history.",
+          serversTitle: "When we contact our servers",
+          serversP1: "IronStack only connects to our servers for two reasons:",
+          serversLi1: "Generate AI workouts when you request them.",
+          serversLi2: "Fetch exercise demo media (WebP images) and related exercise details.",
+          dataTitle: "Your data",
+          dataP1: "We only send the minimum information needed to complete AI generation requests or load exercise media. We do not store or share your workout history for analytics or advertising.",
+          contactTitle: "Contact",
+          contactP1: "If you have any questions, reach out at ",
+          footerRights: "\u00a9 2026 IronStack. All rights reserved.",
+          toggleLabel: "Espa\u00f1ol",
+          toggleAria: "Switch language to Spanish"
+        },
+        es: {
+          pageTitle: "Aviso de Privacidad de IronStack",
+          logoAlt: "Logo de IronStack",
+          backHome: "Volver al inicio",
+          privacyTitle: "Aviso de privacidad",
+          privacySubtitle: "Simple, transparente y dise\u00f1ado para entrenar sin conexi\u00f3n primero.",
+          collectTitle: "Qu\u00e9 recopilamos",
+          collectP1: "IronStack no usa anal\u00edticas, rastreo publicitario ni seguimiento de comportamiento de terceros. No vendemos tus datos.",
+          collectP2: "La mayor parte de tus datos de entrenamiento se queda en tu dispositivo. La app funciona bien sin conexi\u00f3n para el registro principal y el historial.",
+          serversTitle: "Cu\u00e1ndo nos conectamos a nuestros servidores",
+          serversP1: "IronStack solo se conecta a nuestros servidores por dos razones:",
+          serversLi1: "Generar rutinas con IA cuando t\u00fa lo solicitas.",
+          serversLi2: "Cargar contenido de demostraci\u00f3n de ejercicios (im\u00e1genes WebP) y detalles relacionados.",
+          dataTitle: "Tus datos",
+          dataP1: "Solo enviamos la informaci\u00f3n m\u00ednima necesaria para completar solicitudes de generaci\u00f3n con IA o cargar contenido de ejercicios. No almacenamos ni compartimos tu historial de entrenamiento para anal\u00edtica o publicidad.",
+          contactTitle: "Contacto",
+          contactP1: "Si tienes dudas, escr\u00edbenos a ",
+          footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
+          toggleLabel: "English",
+          toggleAria: "Cambiar idioma a ingl\u00e9s"
+        }
+      };
+
+      function getDefaultLanguage() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === "en" || saved === "es") return saved;
+        return (navigator.language || "").toLowerCase().startsWith("es") ? "es" : "en";
+      }
+
+      function applyLanguage(lang) {
+        const copy = translations[lang] || translations.en;
+        document.documentElement.lang = lang === "es" ? "es-MX" : "en";
+        document.title = copy.pageTitle;
+        document.querySelectorAll("[data-i18n]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n");
+          if (copy[key]) node.textContent = copy[key];
+        });
+        document.querySelectorAll("[data-i18n-alt]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n-alt");
+          if (copy[key]) node.setAttribute("alt", copy[key]);
+        });
+        const toggle = document.getElementById("lang-toggle");
+        if (toggle) {
+          toggle.textContent = copy.toggleLabel;
+          toggle.setAttribute("aria-label", copy.toggleAria);
+          toggle.setAttribute("data-lang", lang);
+        }
+      }
+
+      const initialLanguage = getDefaultLanguage();
+      applyLanguage(initialLanguage);
+
+      const toggle = document.getElementById("lang-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          const current = toggle.getAttribute("data-lang") === "es" ? "es" : "en";
+          const next = current === "en" ? "es" : "en";
+          localStorage.setItem(STORAGE_KEY, next);
+          applyLanguage(next);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>

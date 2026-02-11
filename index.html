@@ -95,8 +95,16 @@
       background: rgba(255, 255, 255, 0.5);
       transition: transform 0.2s ease, border 0.2s ease;
     }
+    button.pill {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
     .hero .pill {
       margin: 0 0 18px;
+    }
+    .lang-toggle {
+      white-space: nowrap;
     }
     .pill:hover {
       transform: translateY(-2px);
@@ -275,31 +283,32 @@
   <div class="page">
     <nav class="nav">
       <div class="logo">
-        <span class="logo-mark"><img src="assets/logo.png" alt="IronStack logo" /></span>
+        <span class="logo-mark"><img src="assets/logo.png" alt="IronStack logo" data-i18n-alt="logoAlt" /></span>
         <span>IronStack</span>
       </div>
       <div class="nav-actions">
-        <a class="pill" href="#features">Features</a>
-        <a class="pill" href="#flows">Workflow</a>
-        <a class="pill" href="privacy-policy/">Privacy</a>
+        <a class="pill" href="#features" data-i18n="navFeatures">Features</a>
+        <a class="pill" href="#flows" data-i18n="navWorkflow">Workflow</a>
+        <a class="pill" href="privacy-policy/" data-i18n="navPrivacy">Privacy</a>
       </div>
+      <button class="pill lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">Español</button>
     </nav>
 
     <section class="hero">
       <div>
-        <div class="pill">Strength-focused workout tracker</div>
-        <h1 class="reveal">Build. Log. Progress.</h1>
-        <p class="reveal">IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
+        <div class="pill" data-i18n="heroPill">Strength-focused workout tracker</div>
+        <h1 class="reveal" data-i18n="heroTitle">Build. Log. Progress.</h1>
+        <p class="reveal" data-i18n="heroSubtitle">IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
         <div class="hero-cta reveal">
-          <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202">Download on the App Store</a>
-          <a class="btn-secondary" href="#features">See what it does</a>
+          <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202" data-i18n="heroCtaPrimary">Download on the App Store</a>
+          <a class="btn-secondary" href="#features" data-i18n="heroCtaSecondary">See what it does</a>
         </div>
       </div>
       <div class="hero-card reveal">
         <div class="hero-card-content">
-          <strong style="font-size: 1rem;">Workout Builder</strong>
-          <h3 style="margin: 8px 0 4px;">Create a Session</h3>
-          <p style="margin: 0 0 18px; color: var(--muted);">Pick exercises, set sets and reps, and save templates.</p>
+          <strong style="font-size: 1rem;" data-i18n="builderTitle">Workout Builder</strong>
+          <h3 style="margin: 8px 0 4px;" data-i18n="builderHeading">Create a Session</h3>
+          <p style="margin: 0 0 18px; color: var(--muted);" data-i18n="builderSubtitle">Pick exercises, set sets and reps, and save templates.</p>
           <div class="metric-grid">
             <div class="metric"><span>Bench Press</span><strong>4 x 6</strong></div>
             <div class="metric"><span>Lat Pulldown</span><strong>4 x 10</strong></div>
@@ -310,70 +319,198 @@
     </section>
 
     <section class="section" id="features">
-      <h2 class="section-title">Built for strength training.</h2>
-      <p class="section-sub">Create workouts, log sets and reps, track PRs, and review history in seconds.</p>
+      <h2 class="section-title" data-i18n="featuresTitle">Built for strength training.</h2>
+      <p class="section-sub" data-i18n="featuresSubtitle">Create workouts, log sets and reps, track PRs, and review history in seconds.</p>
       <div class="feature-grid">
         <div class="feature-card reveal">
           <i class="fa-solid fa-sliders"></i>
-          <h3>Create workouts</h3>
-          <p>Build sessions by choosing exercises and setting sets and reps.</p>
+          <h3 data-i18n="feature1Title">Create workouts</h3>
+          <p data-i18n="feature1Text">Build sessions by choosing exercises and setting sets and reps.</p>
         </div>
         <div class="feature-card reveal">
           <i class="fa-solid fa-bolt"></i>
-          <h3>Track progress + PRs</h3>
-          <p>See improvements over time and highlight personal records.</p>
+          <h3 data-i18n="feature2Title">Track progress + PRs</h3>
+          <p data-i18n="feature2Text">See improvements over time and highlight personal records.</p>
         </div>
         <div class="feature-card reveal">
           <i class="fa-solid fa-clock-rotate-left"></i>
-          <h3>Workout history</h3>
-          <p>Review past sessions and keep your training consistent.</p>
+          <h3 data-i18n="feature3Title">Workout history</h3>
+          <p data-i18n="feature3Text">Review past sessions and keep your training consistent.</p>
         </div>
         <div class="feature-card reveal">
           <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <h3>AI-generated workouts</h3>
-          <p>Get a session built for your goals in seconds.</p>
+          <h3 data-i18n="feature4Title">AI-generated workouts</h3>
+          <p data-i18n="feature4Text">Get a session built for your goals in seconds.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="flows">
-      <h2 class="section-title">Everything you need to train well.</h2>
-      <p class="section-sub">Strength-focused tools, a detailed exercise library, and clear progress tracking.</p>
+      <h2 class="section-title" data-i18n="flowsTitle">Everything you need to train well.</h2>
+      <p class="section-sub" data-i18n="flowsSubtitle">Strength-focused tools, a detailed exercise library, and clear progress tracking.</p>
       <div class="feature-grid">
         <div class="feature-card">
           <i class="fa-solid fa-layer-group"></i>
-          <h3>Exercise library</h3>
-          <p>Demos, details, and muscle groups for every movement.</p>
+          <h3 data-i18n="flow1Title">Exercise library</h3>
+          <p data-i18n="flow1Text">Demos, details, and muscle groups for every movement.</p>
         </div>
         <div class="feature-card">
           <i class="fa-solid fa-dumbbell"></i>
-          <h3>Strength training focus</h3>
-          <p>Built for progressive overload and structured lifting.</p>
+          <h3 data-i18n="flow2Title">Strength training focus</h3>
+          <p data-i18n="flow2Text">Built for progressive overload and structured lifting.</p>
         </div>
         <div class="feature-card">
           <i class="fa-solid fa-book-open"></i>
-          <h3>History that helps</h3>
-          <p>Review past workouts to keep your training consistent.</p>
+          <h3 data-i18n="flow3Title">History that helps</h3>
+          <p data-i18n="flow3Text">Review past workouts to keep your training consistent.</p>
         </div>
       </div>
     </section>
 
     <section class="section cta-band">
       <div>
-        <h2 class="section-title">Start logging today</h2>
-        <p class="section-sub">Create workouts, log sets and reps, and track PRs in one place.</p>
+        <h2 class="section-title" data-i18n="ctaTitle">Start logging today</h2>
+        <p class="section-sub" data-i18n="ctaSubtitle">Create workouts, log sets and reps, and track PRs in one place.</p>
       </div>
       <div class="hero-cta">
-        <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202">View on the App Store</a>
-        <a class="btn-secondary" href="mailto:info@lorenzanadesigns.com">Support email</a>
+        <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202" data-i18n="ctaPrimary">View on the App Store</a>
+        <a class="btn-secondary" href="mailto:info@lorenzanadesigns.com" data-i18n="ctaSecondary">Support email</a>
       </div>
     </section>
 
     <footer>
-      <span>&copy; 2026 IronStack. All rights reserved.</span>
+      <span data-i18n="footerRights">&copy; 2026 IronStack. All rights reserved.</span>
       <span>Marcus Lorenzana</span>
-      <span><a href="privacy-policy/">Privacy Policy</a></span>
+      <span><a href="privacy-policy/" data-i18n="footerPrivacy">Privacy Policy</a></span>
     </footer>
   </div>
+  <script>
+    (function () {
+      const STORAGE_KEY = "ironstack-language";
+      const translations = {
+        en: {
+          pageTitle: "IronStack - Simple & Free Workout Tracker",
+          logoAlt: "IronStack logo",
+          navFeatures: "Features",
+          navWorkflow: "Workflow",
+          navPrivacy: "Privacy",
+          heroPill: "Strength-focused workout tracker",
+          heroTitle: "Build. Log. Progress.",
+          heroSubtitle: "IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.",
+          heroCtaPrimary: "Download on the App Store",
+          heroCtaSecondary: "See what it does",
+          builderTitle: "Workout Builder",
+          builderHeading: "Create a Session",
+          builderSubtitle: "Pick exercises, set sets and reps, and save templates.",
+          featuresTitle: "Built for strength training.",
+          featuresSubtitle: "Create workouts, log sets and reps, track PRs, and review history in seconds.",
+          feature1Title: "Create workouts",
+          feature1Text: "Build sessions by choosing exercises and setting sets and reps.",
+          feature2Title: "Track progress + PRs",
+          feature2Text: "See improvements over time and highlight personal records.",
+          feature3Title: "Workout history",
+          feature3Text: "Review past sessions and keep your training consistent.",
+          feature4Title: "AI-generated workouts",
+          feature4Text: "Get a session built for your goals in seconds.",
+          flowsTitle: "Everything you need to train well.",
+          flowsSubtitle: "Strength-focused tools, a detailed exercise library, and clear progress tracking.",
+          flow1Title: "Exercise library",
+          flow1Text: "Demos, details, and muscle groups for every movement.",
+          flow2Title: "Strength training focus",
+          flow2Text: "Built for progressive overload and structured lifting.",
+          flow3Title: "History that helps",
+          flow3Text: "Review past workouts to keep your training consistent.",
+          ctaTitle: "Start logging today",
+          ctaSubtitle: "Create workouts, log sets and reps, and track PRs in one place.",
+          ctaPrimary: "View on the App Store",
+          ctaSecondary: "Support email",
+          footerRights: "\u00a9 2026 IronStack. All rights reserved.",
+          footerPrivacy: "Privacy Policy",
+          toggleLabel: "Espa\u00f1ol",
+          toggleAria: "Switch language to Spanish"
+        },
+        es: {
+          pageTitle: "IronStack - Registro de entrenamientos simple y gratis",
+          logoAlt: "Logo de IronStack",
+          navFeatures: "Funciones",
+          navWorkflow: "Flujo",
+          navPrivacy: "Privacidad",
+          heroPill: "Registro de entrenamientos enfocado en fuerza",
+          heroTitle: "Crea. Registra. Progresa.",
+          heroSubtitle: "IronStack es una app para seguimiento de entrenamiento de fuerza con creaci\u00f3n r\u00e1pida de rutinas, una biblioteca completa de ejercicios y progreso claro.",
+          heroCtaPrimary: "Desc\u00e1rgala en App Store",
+          heroCtaSecondary: "Ver funciones",
+          builderTitle: "Creador de rutinas",
+          builderHeading: "Crea una sesi\u00f3n",
+          builderSubtitle: "Elige ejercicios, define series y repeticiones, y guarda plantillas.",
+          featuresTitle: "Hecha para entrenamiento de fuerza.",
+          featuresSubtitle: "Crea rutinas, registra series y repeticiones, sigue tus PR y revisa historial en segundos.",
+          feature1Title: "Crea rutinas",
+          feature1Text: "Arma sesiones eligiendo ejercicios y definiendo series y repeticiones.",
+          feature2Title: "Sigue progreso y PR",
+          feature2Text: "Ve tus mejoras con el tiempo y destaca tus r\u00e9cords personales.",
+          feature3Title: "Historial de entrenamientos",
+          feature3Text: "Revisa sesiones pasadas y mant\u00e9n constancia en tu entrenamiento.",
+          feature4Title: "Rutinas generadas con IA",
+          feature4Text: "Obt\u00e9n una sesi\u00f3n dise\u00f1ada para tus objetivos en segundos.",
+          flowsTitle: "Todo lo que necesitas para entrenar bien.",
+          flowsSubtitle: "Herramientas enfocadas en fuerza, biblioteca detallada de ejercicios y seguimiento claro de progreso.",
+          flow1Title: "Biblioteca de ejercicios",
+          flow1Text: "Demos, detalles y grupos musculares para cada movimiento.",
+          flow2Title: "Enfoque en fuerza",
+          flow2Text: "Dise\u00f1ada para sobrecarga progresiva y levantamiento estructurado.",
+          flow3Title: "Historial que s\u00ed ayuda",
+          flow3Text: "Revisa entrenamientos pasados para mantener constancia.",
+          ctaTitle: "Empieza a registrar hoy",
+          ctaSubtitle: "Crea rutinas, registra series y repeticiones, y sigue tus PR en un solo lugar.",
+          ctaPrimary: "Ver en App Store",
+          ctaSecondary: "Correo de soporte",
+          footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
+          footerPrivacy: "Aviso de privacidad",
+          toggleLabel: "English",
+          toggleAria: "Cambiar idioma a ingl\u00e9s"
+        }
+      };
+
+      function getDefaultLanguage() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === "en" || saved === "es") return saved;
+        return (navigator.language || "").toLowerCase().startsWith("es") ? "es" : "en";
+      }
+
+      function applyLanguage(lang) {
+        const copy = translations[lang] || translations.en;
+        document.documentElement.lang = lang === "es" ? "es-MX" : "en";
+        document.title = copy.pageTitle;
+        document.querySelectorAll("[data-i18n]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n");
+          if (copy[key]) node.textContent = copy[key];
+        });
+        document.querySelectorAll("[data-i18n-alt]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n-alt");
+          if (copy[key]) node.setAttribute("alt", copy[key]);
+        });
+        const toggle = document.getElementById("lang-toggle");
+        if (toggle) {
+          toggle.textContent = copy.toggleLabel;
+          toggle.setAttribute("aria-label", copy.toggleAria);
+          toggle.setAttribute("data-lang", lang);
+        }
+      }
+
+      const initialLanguage = getDefaultLanguage();
+      applyLanguage(initialLanguage);
+
+      const toggle = document.getElementById("lang-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          const current = toggle.getAttribute("data-lang") === "es" ? "es" : "en";
+          const next = current === "en" ? "es" : "en";
+          localStorage.setItem(STORAGE_KEY, next);
+          applyLanguage(next);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
