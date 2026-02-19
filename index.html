@@ -331,7 +331,7 @@
         <h1 class="reveal" data-i18n="heroTitle">Build. Log. Progress.</h1>
         <p class="reveal" data-i18n="heroSubtitle">IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
         <div class="hero-cta reveal">
-          <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202" data-i18n="heroCtaPrimary">Download on the App Store</a>
+          <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="heroCtaPrimary">Download on the App Store</a>
           <a class="btn-secondary" href="#features" data-i18n="heroCtaSecondary">See what it does</a>
         </div>
       </div>
@@ -419,7 +419,7 @@
         <p class="section-sub" data-i18n="ctaSubtitle">Create workouts, log sets and reps, and track PRs in one place.</p>
       </div>
       <div class="hero-cta">
-        <a class="btn-primary" href="https://apps.apple.com/us/app/repvault-simple-workout-log/id6741048202" data-i18n="ctaPrimary">View on the App Store</a>
+        <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="ctaPrimary">View on the App Store</a>
         <a class="btn-secondary" href="mailto:info@lorenzanadesigns.com" data-i18n="ctaSecondary">Support email</a>
       </div>
     </section>
@@ -433,6 +433,10 @@
   <script>
     (function () {
       const STORAGE_KEY = "ironstack-language";
+      const APP_STORE_LINKS = {
+        en: "https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202",
+        es: "https://apps.apple.com/es/app/repvault-simple-workout-log/id6741048202"
+      };
       const translations = {
         en: {
           pageTitle: "IronStack - Simple & Free Workout Tracker",
@@ -551,6 +555,9 @@
         document.querySelectorAll("img[data-src-en][data-src-es]").forEach(function (img) {
           const nextSrc = lang === "es" ? img.getAttribute("data-src-es") : img.getAttribute("data-src-en");
           if (nextSrc) img.setAttribute("src", nextSrc);
+        });
+        document.querySelectorAll("a[data-appstore-link]").forEach(function (link) {
+          link.setAttribute("href", lang === "es" ? APP_STORE_LINKS.es : APP_STORE_LINKS.en);
         });
         const toggle = document.getElementById("lang-toggle");
         if (toggle) {
