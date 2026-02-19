@@ -236,6 +236,37 @@
       align-items: center;
       margin-top: 28px;
     }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+      margin-top: 26px;
+      align-items: start;
+    }
+    .phone-shot {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    .phone-shot:hover {
+      transform: translateY(-4px);
+      border-color: rgba(10, 120, 165, 0.5);
+    }
+    .phone-shot img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      aspect-ratio: 9 / 19.5;
+      object-fit: cover;
+    }
+    .phone-shot figcaption {
+      margin: 12px 4px 2px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
     .cta-band {
       margin-top: 80px;
       border-radius: 24px;
@@ -367,6 +398,21 @@
       </div>
     </section>
 
+    <section class="section" id="previews">
+      <h2 class="section-title" data-i18n="previewsTitle">See IronStack in action.</h2>
+      <p class="section-sub" data-i18n="previewsSubtitle">Two quick snapshots of the app experience on iPhone.</p>
+      <div class="preview-grid">
+        <figure class="phone-shot reveal">
+          <img src="assets/slice-1.webp" alt="Workout builder screen" data-i18n-alt="previewAlt1" loading="lazy" decoding="async" />
+          <figcaption data-i18n="previewCaption1">Build your workout with clean, focused controls.</figcaption>
+        </figure>
+        <figure class="phone-shot reveal">
+          <img src="assets/slice-2.webp" alt="Workout tracking and history screen" data-i18n-alt="previewAlt2" loading="lazy" decoding="async" />
+          <figcaption data-i18n="previewCaption2">Log sets fast and review your recent training.</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section class="section cta-band">
       <div>
         <h2 class="section-title" data-i18n="ctaTitle">Start logging today</h2>
@@ -420,6 +466,12 @@
           flow2Text: "Built for progressive overload and structured lifting.",
           flow3Title: "History that helps",
           flow3Text: "Review past workouts to keep your training consistent.",
+          previewsTitle: "See IronStack in action.",
+          previewsSubtitle: "Two quick snapshots of the app experience on iPhone.",
+          previewAlt1: "Workout builder screen",
+          previewAlt2: "Workout tracking and history screen",
+          previewCaption1: "Build your workout with clean, focused controls.",
+          previewCaption2: "Log sets fast and review your recent training.",
           ctaTitle: "Start logging today",
           ctaSubtitle: "Create workouts, log sets and reps, and track PRs in one place.",
           ctaPrimary: "View on the App Store",
@@ -461,6 +513,12 @@
           flow2Text: "Dise\u00f1ada para sobrecarga progresiva y levantamiento estructurado.",
           flow3Title: "Historial que s\u00ed ayuda",
           flow3Text: "Revisa entrenamientos pasados para mantener constancia.",
+          previewsTitle: "Mira IronStack en acci\u00f3n.",
+          previewsSubtitle: "Dos capturas r\u00e1pidas de la experiencia en iPhone.",
+          previewAlt1: "Pantalla de creaci\u00f3n de rutina",
+          previewAlt2: "Pantalla de seguimiento e historial",
+          previewCaption1: "Arma tu rutina con controles limpios y enfocados.",
+          previewCaption2: "Registra series r\u00e1pido y revisa tus entrenamientos recientes.",
           ctaTitle: "Empieza a registrar hoy",
           ctaSubtitle: "Crea rutinas, registra series y repeticiones, y sigue tus PR en un solo lugar.",
           ctaPrimary: "Ver en App Store",
