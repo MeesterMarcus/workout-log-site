@@ -1,0 +1,25 @@
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies / build output
+node_modules/
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# Tooling
+.wrangler/
+.vercel/
+.netlify/

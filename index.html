@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IronStack - Simple & Free Workout Tracker</title>
   <link rel="icon" href="assets/logo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
@@ -26,7 +23,7 @@
     *, *::before, *::after { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(900px 420px at 15% -10%, rgba(10, 120, 165, 0.18), transparent 60%),
@@ -191,7 +188,7 @@
       border-radius: 14px;
       background: rgba(27, 42, 65, 0.08);
       border: 1px solid rgba(27, 42, 65, 0.12);
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 0.85rem;
     }
     .metric strong { color: var(--accent); }
@@ -320,6 +317,7 @@
       <div class="nav-actions">
         <a class="pill" href="#features" data-i18n="navFeatures">Features</a>
         <a class="pill" href="#flows" data-i18n="navWorkflow">Workflow</a>
+        <a class="pill" href="support/" data-i18n="navSupport">Support</a>
         <a class="pill" href="privacy-policy/" data-i18n="navPrivacy">Privacy</a>
       </div>
       <button class="pill lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">Español</button>
@@ -420,13 +418,14 @@
       </div>
       <div class="hero-cta">
         <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="ctaPrimary">View on the App Store</a>
-        <a class="btn-secondary" href="mailto:info@lorenzanadesigns.com" data-i18n="ctaSecondary">Support email</a>
+        <a class="btn-secondary" href="support/" data-i18n="ctaSecondary">Open support</a>
       </div>
     </section>
 
     <footer>
       <span data-i18n="footerRights">&copy; 2026 IronStack. All rights reserved.</span>
       <span>Marcus Lorenzana</span>
+      <span><a href="support/" data-i18n="footerSupport">Support</a></span>
       <span><a href="privacy-policy/" data-i18n="footerPrivacy">Privacy Policy</a></span>
     </footer>
   </div>
@@ -443,6 +442,7 @@
           logoAlt: "IronStack logo",
           navFeatures: "Features",
           navWorkflow: "Workflow",
+          navSupport: "Support",
           navPrivacy: "Privacy",
           heroPill: "Strength-focused workout tracker",
           heroTitle: "Build. Log. Progress.",
@@ -482,8 +482,9 @@
           ctaTitle: "Start logging today",
           ctaSubtitle: "Create workouts, log sets and reps, and track PRs in one place.",
           ctaPrimary: "View on the App Store",
-          ctaSecondary: "Support email",
+          ctaSecondary: "Open support",
           footerRights: "\u00a9 2026 IronStack. All rights reserved.",
+          footerSupport: "Support",
           footerPrivacy: "Privacy Policy",
           toggleLabel: "Espa\u00f1ol",
           toggleAria: "Switch language to Spanish"
@@ -493,6 +494,7 @@
           logoAlt: "Logo de IronStack",
           navFeatures: "Funciones",
           navWorkflow: "Flujo",
+          navSupport: "Soporte",
           navPrivacy: "Privacidad",
           heroPill: "Registro de entrenamientos enfocado en fuerza",
           heroTitle: "Crea. Registra. Progresa.",
@@ -532,8 +534,9 @@
           ctaTitle: "Empieza a registrar hoy",
           ctaSubtitle: "Crea rutinas, registra series y repeticiones, y sigue tus PR en un solo lugar.",
           ctaPrimary: "Ver en App Store",
-          ctaSecondary: "Correo de soporte",
+          ctaSecondary: "Abrir soporte",
           footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
+          footerSupport: "Soporte",
           footerPrivacy: "Aviso de privacidad",
           toggleLabel: "English",
           toggleAria: "Cambiar idioma a ingl\u00e9s"

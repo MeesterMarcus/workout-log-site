@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IronStack Support</title>
+  <link rel="icon" href="../assets/logo.png" />
+  <style>
+    :root {
+      --bg-0: #f7f6f3;
+      --bg-1: #eef2f7;
+      --bg-2: #ffffff;
+      --panel: rgba(255, 255, 255, 0.72);
+      --text: #1b2a41;
+      --muted: #495466;
+      --accent: #0a78a5;
+      --accent-2: #e07a5f;
+      --line: rgba(27, 42, 65, 0.15);
+      --ok: #22684f;
+      --warn: #8b5a13;
+      --danger: #a63a3a;
+      --shadow: 0 24px 60px rgba(27, 42, 65, 0.18);
+      --content-width: 960px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 420px at 15% -10%, rgba(10, 120, 165, 0.18), transparent 60%),
+        radial-gradient(700px 380px at 85% 0%, rgba(224, 122, 95, 0.18), transparent 60%),
+        linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2) 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    [hidden] { display: none !important; }
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
+    }
+    .page {
+      position: relative;
+      padding: 28px 24px 60px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--content-width);
+      margin: 0 auto 48px;
+      gap: 16px;
+    }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 18px rgba(27, 42, 65, 0.18);
+      border: 1px solid rgba(27, 42, 65, 0.12);
+      overflow: hidden;
+    }
+    .logo-mark img {
+      width: 70%;
+      height: 70%;
+      object-fit: contain;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.5);
+      transition: transform 0.2s ease, border 0.2s ease;
+    }
+    button.pill {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+    .pill:hover {
+      transform: translateY(-2px);
+      border-color: rgba(27, 42, 65, 0.35);
+    }
+    .header {
+      max-width: var(--content-width);
+      margin: 0 auto 44px;
+      display: grid;
+      gap: 22px;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .header > div {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      max-width: 18ch;
+    }
+    .header p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.45;
+      max-width: 700px;
+    }
+    .info-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      max-width: 520px;
+      width: 100%;
+      margin-top: 2px;
+    }
+    .info-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+    .info-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      align-self: flex-start;
+      border-radius: 999px;
+      padding: 8px 12px;
+      border: 1px solid rgba(10, 120, 165, 0.18);
+      background: rgba(10, 120, 165, 0.08);
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .layout {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+    .card > p {
+      margin: 0 0 20px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 14px;
+    }
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+    .field.full {
+      grid-column: 1 / -1;
+    }
+    .field label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .field span.optional {
+      color: var(--muted);
+      font-weight: 500;
+    }
+    input, select, textarea, button {
+      font: inherit;
+    }
+    input, select, textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text);
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(10, 120, 165, 0.5);
+      box-shadow: 0 0 0 4px rgba(10, 120, 165, 0.08);
+    }
+    .submit-row {
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .btn-primary {
+      border: 0;
+      padding: 13px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #2b6c61);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(10, 120, 165, 0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    }
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 44px rgba(10, 120, 165, 0.28);
+    }
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+    .helper {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.35;
+      text-align: left;
+    }
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.65);
+      display: none;
+      white-space: pre-wrap;
+    }
+    .status.show { display: block; }
+    .status.success {
+      border-color: rgba(34, 104, 79, 0.25);
+      background: rgba(34, 104, 79, 0.08);
+      color: var(--ok);
+    }
+    .status.error {
+      border-color: rgba(166, 58, 58, 0.25);
+      background: rgba(166, 58, 58, 0.08);
+      color: var(--danger);
+    }
+    .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    footer {
+      max-width: var(--content-width);
+      margin: 72px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: space-between;
+    }
+    @media (max-width: 960px) {
+      .nav {
+        margin-bottom: 36px;
+      }
+      .header {
+        margin-bottom: 32px;
+        gap: 16px;
+      }
+      .header > div,
+      .info-card {
+        max-width: 100%;
+      }
+      .card {
+        padding: 22px 22px 20px;
+      }
+    }
+    @media (max-width: 640px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .header > div {
+        gap: 8px;
+      }
+      .header h1 {
+        max-width: none;
+      }
+      .nav {
+        align-items: flex-start;
+      }
+      .nav-actions {
+        justify-content: flex-start;
+      }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="page">
+    <nav class="nav">
+      <a class="logo" href="../">
+        <span class="logo-mark"><img src="../assets/logo.png" alt="IronStack logo" data-i18n-alt="logoAlt" /></span>
+        <span>IronStack</span>
+      </a>
+      <div class="nav-actions">
+        <a class="pill" href="../" data-i18n="backHome">Back to home</a>
+        <a class="pill" href="../privacy-policy/" data-i18n="privacyLink">Privacy</a>
+        <button class="pill" id="lang-toggle" type="button" aria-label="Switch language">Español</button>
+      </div>
+    </nav>
+
+    <header class="header">
+      <div>
+        <div class="tag" data-i18n="headerTag">Support</div>
+        <h1 data-i18n="supportTitle">Need help with IronStack?</h1>
+        <p data-i18n="supportSubtitle">Send us a message and we will reply by email as soon as we can.</p>
+      </div>
+      <aside class="info-card">
+        <h2 data-i18n="tipsTitle">Before you submit</h2>
+        <p data-i18n="tipsSubtitle">Including a few details helps us solve issues faster.</p>
+        <ul class="list">
+          <li data-i18n="tip1">What you were trying to do</li>
+          <li data-i18n="tip2">What happened instead (include error text)</li>
+          <li data-i18n="tip3">Device + iOS version + app version (if known)</li>
+        </ul>
+      </aside>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2 data-i18n="newTicketTitle">Contact support</h2>
+        <p data-i18n="newTicketSubtitle">Share the details below so we can help.</p>
+        <form id="support-form" action="https://formspree.io/f/xgolryej" method="POST" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name" data-i18n="labelName">Name</label>
+              <input id="name" name="name" type="text" maxlength="120" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="labelEmail">Email</label>
+              <input id="email" name="email" type="email" required maxlength="200" autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="category" data-i18n="labelCategory">Category</label>
+              <select id="category" name="category">
+                <option value="bug" data-i18n="categoryBug">Bug / issue</option>
+                <option value="billing" data-i18n="categoryBilling">Billing</option>
+                <option value="feature" data-i18n="categoryFeature">Feature request</option>
+                <option value="account" data-i18n="categoryAccount">Account</option>
+                <option value="other" data-i18n="categoryOther">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="appVersion"><span data-i18n="labelAppVersion">App version</span> <span class="optional" data-i18n="optional">(optional)</span></label>
+              <input id="appVersion" name="appVersion" type="text" maxlength="60" placeholder="e.g. 1.2.0" />
+            </div>
+            <div class="field full">
+              <label for="subject" data-i18n="labelSubject">Subject</label>
+              <input id="subject" name="subject" type="text" required maxlength="180" />
+            </div>
+            <div class="field full">
+              <label for="message" data-i18n="labelMessage">Message</label>
+              <textarea id="message" name="message" required maxlength="4000"></textarea>
+            </div>
+            <div class="field full">
+              <label for="device"><span data-i18n="labelDevice">Device details</span> <span class="optional" data-i18n="optional">(optional)</span></label>
+              <input id="device" name="device" type="text" maxlength="240" placeholder="iPhone 15 Pro, iOS 18.3" />
+            </div>
+          </div>
+          <div class="submit-row">
+            <button class="btn-primary" id="submit-btn" type="submit" data-i18n="submitBtn">Send message</button>
+            <p class="helper" data-i18n="submitHelper">We usually reply by email.</p>
+          </div>
+          <div class="status" id="submit-status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <span data-i18n="footerRights">&copy; 2026 IronStack. All rights reserved.</span>
+      <span>Marcus Lorenzana</span>
+      <span><a href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "ironstack-language";
+      const translations = {
+        en: {
+          pageTitle: "IronStack Support",
+          logoAlt: "IronStack logo",
+          backHome: "Back to home",
+          privacyLink: "Privacy",
+          headerTag: "Support",
+          supportTitle: "Need help with IronStack?",
+          supportSubtitle: "Send us a message and we will reply by email as soon as we can.",
+          tipsTitle: "Before you submit",
+          tipsSubtitle: "Including a few details helps us solve issues faster.",
+          tip1: "What you were trying to do",
+          tip2: "What happened instead (include error text)",
+          tip3: "Device + iOS version + app version (if known)",
+          newTicketTitle: "Contact support",
+          newTicketSubtitle: "Share the details below so we can help.",
+          labelName: "Name",
+          labelEmail: "Email",
+          labelCategory: "Category",
+          labelAppVersion: "App version",
+          labelSubject: "Subject",
+          labelMessage: "Message",
+          labelDevice: "Device details",
+          optional: "(optional)",
+          categoryBug: "Bug / issue",
+          categoryBilling: "Billing",
+          categoryFeature: "Feature request",
+          categoryAccount: "Account",
+          categoryOther: "Other",
+          submitBtn: "Send message",
+          submitHelper: "We usually reply by email.",
+          checkTitle: "Check ticket status",
+          checkSubtitle: "Use your ticket ID and the same email used when you submitted the request.",
+          lookupTicketLabel: "Ticket ID",
+          lookupEmailLabel: "Email",
+          lookupBtn: "Check status",
+          checkHelper: "Only basic ticket status is shown here.",
+          ticketIdLabel: "Ticket ID",
+          ticketStatusLabel: "Status",
+          ticketUpdatedLabel: "Updated",
+          footerRights: "\u00a9 2026 IronStack. All rights reserved.",
+          toggleLabel: "Espa\u00f1ol",
+          toggleAria: "Switch language to Spanish",
+          validationEmail: "Enter a valid email address.",
+          validationRequired: "Please fill in the required fields.",
+          submitting: "Submitting...",
+          lookingUp: "Checking...",
+          submitSuccess: "Thanks. Your message was sent.",
+          submitError: "Could not send your message. Please try again.",
+          lookupError: "Could not find a ticket with that ID + email.",
+          lookupSuccess: "Ticket found."
+        },
+        es: {
+          pageTitle: "Soporte de IronStack",
+          logoAlt: "Logo de IronStack",
+          backHome: "Volver al inicio",
+          privacyLink: "Privacidad",
+          headerTag: "Soporte",
+          supportTitle: "¿Necesitas ayuda con IronStack?",
+          supportSubtitle: "Env\u00edanos un mensaje y responderemos por correo lo antes posible.",
+          tipsTitle: "Antes de enviar",
+          tipsSubtitle: "Incluir algunos detalles nos ayuda a resolver problemas m\u00e1s r\u00e1pido.",
+          tip1: "Qu\u00e9 intentabas hacer",
+          tip2: "Qu\u00e9 ocurri\u00f3 en su lugar (incluye el texto del error)",
+          tip3: "Dispositivo + versi\u00f3n de iOS + versi\u00f3n de la app (si la sabes)",
+          newTicketTitle: "Contactar soporte",
+          newTicketSubtitle: "Comparte los detalles abajo para poder ayudarte.",
+          labelName: "Nombre",
+          labelEmail: "Correo",
+          labelCategory: "Categor\u00eda",
+          labelAppVersion: "Versi\u00f3n de la app",
+          labelSubject: "Asunto",
+          labelMessage: "Mensaje",
+          labelDevice: "Detalles del dispositivo",
+          optional: "(opcional)",
+          categoryBug: "Bug / problema",
+          categoryBilling: "Facturaci\u00f3n",
+          categoryFeature: "Solicitud de funci\u00f3n",
+          categoryAccount: "Cuenta",
+          categoryOther: "Otro",
+          submitBtn: "Enviar mensaje",
+          submitHelper: "Normalmente respondemos por correo.",
+          checkTitle: "Consultar estado del ticket",
+          checkSubtitle: "Usa tu ID de ticket y el mismo correo con el que enviaste la solicitud.",
+          lookupTicketLabel: "ID de ticket",
+          lookupEmailLabel: "Correo",
+          lookupBtn: "Consultar estado",
+          checkHelper: "Aqu\u00ed solo se muestra el estado b\u00e1sico del ticket.",
+          ticketIdLabel: "ID de ticket",
+          ticketStatusLabel: "Estado",
+          ticketUpdatedLabel: "Actualizado",
+          footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
+          toggleLabel: "English",
+          toggleAria: "Cambiar idioma a ingl\u00e9s",
+          validationEmail: "Ingresa un correo v\u00e1lido.",
+          validationRequired: "Completa los campos obligatorios.",
+          submitting: "Enviando...",
+          lookingUp: "Consultando...",
+          submitSuccess: "Gracias. Tu mensaje fue enviado.",
+          submitError: "No se pudo enviar tu mensaje. Int\u00e9ntalo de nuevo.",
+          lookupError: "No se encontr\u00f3 un ticket con ese ID + correo.",
+          lookupSuccess: "Ticket encontrado."
+        }
+      };
+
+      function getDefaultLanguage() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === "en" || saved === "es") return saved;
+        return (navigator.language || "").toLowerCase().startsWith("es") ? "es" : "en";
+      }
+
+      function getCopy() {
+        const current = document.documentElement.getAttribute("data-lang");
+        return translations[current] || translations.en;
+      }
+
+      function applyLanguage(lang) {
+        const copy = translations[lang] || translations.en;
+        document.documentElement.lang = lang === "es" ? "es-MX" : "en";
+        document.documentElement.setAttribute("data-lang", lang);
+        document.title = copy.pageTitle;
+
+        document.querySelectorAll("[data-i18n]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n");
+          if (copy[key]) node.textContent = copy[key];
+        });
+        document.querySelectorAll("[data-i18n-alt]").forEach(function (node) {
+          const key = node.getAttribute("data-i18n-alt");
+          if (copy[key]) node.setAttribute("alt", copy[key]);
+        });
+
+        const toggle = document.getElementById("lang-toggle");
+        if (toggle) {
+          toggle.textContent = copy.toggleLabel;
+          toggle.setAttribute("aria-label", copy.toggleAria);
+          toggle.setAttribute("data-lang", lang);
+        }
+      }
+
+      function showStatus(node, message, isError) {
+        node.classList.add("show");
+        node.classList.toggle("error", !!isError);
+        node.classList.toggle("success", !isError);
+        node.textContent = message;
+      }
+
+      function clearStatus(node) {
+        node.classList.remove("show", "error", "success");
+        node.textContent = "";
+      }
+
+      function isValidEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      }
+
+      const initialLanguage = getDefaultLanguage();
+      applyLanguage(initialLanguage);
+
+      const toggle = document.getElementById("lang-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          const current = toggle.getAttribute("data-lang") === "es" ? "es" : "en";
+          const next = current === "en" ? "es" : "en";
+          localStorage.setItem(STORAGE_KEY, next);
+          applyLanguage(next);
+        });
+      }
+
+      const supportForm = document.getElementById("support-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const submitStatus = document.getElementById("submit-status");
+
+      supportForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        clearStatus(submitStatus);
+
+        const copy = getCopy();
+        const formData = new FormData(supportForm);
+        const payload = {
+          name: String(formData.get("name") || "").trim(),
+          email: String(formData.get("email") || "").trim(),
+          category: String(formData.get("category") || "other").trim(),
+          appVersion: String(formData.get("appVersion") || "").trim(),
+          subject: String(formData.get("subject") || "").trim(),
+          message: String(formData.get("message") || "").trim(),
+          device: String(formData.get("device") || "").trim(),
+          locale: document.documentElement.getAttribute("data-lang") || "en"
+        };
+
+        if (!payload.email || !payload.subject || !payload.message) {
+          showStatus(submitStatus, copy.validationRequired, true);
+          return;
+        }
+        if (!isValidEmail(payload.email)) {
+          showStatus(submitStatus, copy.validationEmail, true);
+          return;
+        }
+
+        const originalLabel = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = copy.submitting;
+
+        try {
+          const action = supportForm.getAttribute("action");
+          if (!action || action.indexOf("REPLACE_WITH_YOUR_FORMSPREE_ID") !== -1) {
+            throw new Error("Formspree endpoint is not configured yet.");
+          }
+          const response = await fetch(action, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+          const data = await response.json().catch(function () { return {}; });
+          if (!response.ok) {
+            throw new Error(data.error || copy.submitError);
+          }
+
+          showStatus(submitStatus, copy.submitSuccess, false);
+          supportForm.reset();
+        } catch (error) {
+          showStatus(submitStatus, error && error.message ? error.message : copy.submitError, true);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
