@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IronStack Support</title>
   <link rel="icon" href="../assets/logo.png" />
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcDDncsAAAAANeg36K9pNiVPnVSoYdKu9IqWkuE"></script>
   <style>
     :root {
       --bg-0: #f7f6f3;
@@ -377,7 +378,14 @@
       <section class="card">
         <h2 data-i18n="newTicketTitle">Contact support</h2>
         <p data-i18n="newTicketSubtitle">Share the details below so we can help.</p>
-        <form id="support-form" action="https://formspree.io/f/xgolryej" method="POST" novalidate>
+        <form
+          id="support-form"
+          action="https://formspree.io/f/xgolryej"
+          method="POST"
+          data-recaptcha-site-key="6LcDDncsAAAAANeg36K9pNiVPnVSoYdKu9IqWkuE"
+          novalidate
+        >
+          <input id="recaptchaToken" name="g-recaptcha-response" type="hidden" value="" />
           <div class="form-grid">
             <div class="field">
               <label for="name" data-i18n="labelName">Name</label>
@@ -482,6 +490,7 @@
           lookingUp: "Checking...",
           submitSuccess: "Thanks. Your message was sent.",
           submitError: "Could not send your message. Please try again.",
+          captchaError: "Security check failed. Please refresh and try again.",
           lookupError: "Could not find a ticket with that ID + email.",
           lookupSuccess: "Ticket found."
         },
@@ -533,6 +542,7 @@
           lookingUp: "Consultando...",
           submitSuccess: "Gracias. Tu mensaje fue enviado.",
           submitError: "No se pudo enviar tu mensaje. Int\u00e9ntalo de nuevo.",
+          captchaError: "La verificaci\u00f3n de seguridad fall\u00f3. Actualiza la p\u00e1gina e int\u00e9ntalo de nuevo.",
           lookupError: "No se encontr\u00f3 un ticket con ese ID + correo.",
           lookupSuccess: "Ticket encontrado."
         }
@@ -588,6 +598,20 @@
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       }
 
+      function getRecaptchaToken(siteKey, action) {
+        return new Promise(function (resolve, reject) {
+          if (!siteKey || !window.grecaptcha || !window.grecaptcha.enterprise) {
+            reject(new Error("reCAPTCHA unavailable"));
+            return;
+          }
+          window.grecaptcha.enterprise.ready(function () {
+            window.grecaptcha.enterprise.execute(siteKey, { action: action })
+              .then(resolve)
+              .catch(reject);
+          });
+        });
+      }
+
       const initialLanguage = getDefaultLanguage();
       applyLanguage(initialLanguage);
 
@@ -604,6 +628,7 @@
       const supportForm = document.getElementById("support-form");
       const submitBtn = document.getElementById("submit-btn");
       const submitStatus = document.getElementById("submit-status");
+      const recaptchaTokenInput = document.getElementById("recaptchaToken");
 
       supportForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -637,9 +662,22 @@
 
         try {
           const action = supportForm.getAttribute("action");
+          const recaptchaSiteKey = supportForm.getAttribute("data-recaptcha-site-key");
           if (!action || action.indexOf("REPLACE_WITH_YOUR_FORMSPREE_ID") !== -1) {
             throw new Error("Formspree endpoint is not configured yet.");
           }
+          let recaptchaToken = "";
+          try {
+            recaptchaToken = await getRecaptchaToken(recaptchaSiteKey, "support_submit");
+          } catch (captchaError) {
+            throw new Error(copy.captchaError);
+          }
+          if (recaptchaTokenInput) {
+            recaptchaTokenInput.value = recaptchaToken;
+          }
+          payload["g-recaptcha-response"] = recaptchaToken;
+          payload.recaptcha_action = "support_submit";
+
           const response = await fetch(action, {
             method: "POST",
             headers: {
@@ -655,6 +693,7 @@
 
           showStatus(submitStatus, copy.submitSuccess, false);
           supportForm.reset();
+          if (recaptchaTokenInput) recaptchaTokenInput.value = "";
         } catch (error) {
           showStatus(submitStatus, error && error.message ? error.message : copy.submitError, true);
         } finally {
