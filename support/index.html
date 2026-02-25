@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IronStack Support</title>
   <link rel="icon" href="../assets/logo.png" />
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcDDncsAAAAANeg36K9pNiVPnVSoYdKu9IqWkuE"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcDDncsAAAAANeg36K9pNiVPnVSoYdKu9IqWkuE"></script>
   <style>
     :root {
       --bg-0: #f7f6f3;
@@ -52,10 +52,15 @@
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       max-width: var(--content-width);
       margin: 0 auto 48px;
       gap: 16px;
+    }
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .logo {
       display: inline-flex;
@@ -86,6 +91,47 @@
       align-items: center;
       flex-wrap: wrap;
       justify-content: flex-end;
+      margin-left: auto;
+    }
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+    }
+    .menu-toggle-lines {
+      display: grid;
+      gap: 4px;
+    }
+    .menu-toggle-lines span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle[aria-expanded="true"] .menu-toggle-lines span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
     .pill {
       display: inline-flex;
@@ -333,10 +379,34 @@
         max-width: none;
       }
       .nav {
+        flex-wrap: wrap;
         align-items: flex-start;
       }
+      .menu-toggle { display: inline-flex; }
       .nav-actions {
+        display: none;
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 14px 28px rgba(27, 42, 65, 0.1);
         justify-content: flex-start;
+      }
+      .nav-actions.is-open {
+        display: flex;
+      }
+      .nav-controls {
+        margin-left: auto;
+      }
+      .nav-actions .pill {
+        width: 100%;
+        justify-content: center;
       }
       footer { flex-direction: column; }
     }
@@ -350,10 +420,27 @@
         <span class="logo-mark"><img src="../assets/logo.png" alt="IronStack logo" data-i18n-alt="logoAlt" /></span>
         <span>IronStack</span>
       </a>
-      <div class="nav-actions">
+      <div class="nav-actions" id="nav-actions">
         <a class="pill" href="../" data-i18n="backHome">Back to home</a>
         <a class="pill" href="../privacy-policy/" data-i18n="privacyLink">Privacy</a>
+      </div>
+      <div class="nav-controls">
         <button class="pill" id="lang-toggle" type="button" aria-label="Switch language">Español</button>
+        <button
+          class="pill menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-controls="nav-actions"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="menu-toggle-lines" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
       </div>
     </nav>
 
@@ -482,6 +569,7 @@
           ticketStatusLabel: "Status",
           ticketUpdatedLabel: "Updated",
           footerRights: "\u00a9 2026 IronStack. All rights reserved.",
+          menuToggleAria: "Toggle navigation menu",
           toggleLabel: "Espa\u00f1ol",
           toggleAria: "Switch language to Spanish",
           validationEmail: "Enter a valid email address.",
@@ -534,6 +622,7 @@
           ticketStatusLabel: "Estado",
           ticketUpdatedLabel: "Actualizado",
           footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
+          menuToggleAria: "Mostrar u ocultar el men\u00fa de navegaci\u00f3n",
           toggleLabel: "English",
           toggleAria: "Cambiar idioma a ingl\u00e9s",
           validationEmail: "Ingresa un correo v\u00e1lido.",
@@ -580,6 +669,10 @@
           toggle.setAttribute("aria-label", copy.toggleAria);
           toggle.setAttribute("data-lang", lang);
         }
+        const menuToggle = document.getElementById("menu-toggle");
+        if (menuToggle && copy.menuToggleAria) {
+          menuToggle.setAttribute("aria-label", copy.menuToggleAria);
+        }
       }
 
       function showStatus(node, message, isError) {
@@ -600,12 +693,12 @@
 
       function getRecaptchaToken(siteKey, action) {
         return new Promise(function (resolve, reject) {
-          if (!siteKey || !window.grecaptcha || !window.grecaptcha.enterprise) {
+          if (!siteKey || !window.grecaptcha || typeof window.grecaptcha.execute !== "function") {
             reject(new Error("reCAPTCHA unavailable"));
             return;
           }
-          window.grecaptcha.enterprise.ready(function () {
-            window.grecaptcha.enterprise.execute(siteKey, { action: action })
+          window.grecaptcha.ready(function () {
+            window.grecaptcha.execute(siteKey, { action: action })
               .then(resolve)
               .catch(reject);
           });
@@ -622,6 +715,37 @@
           const next = current === "en" ? "es" : "en";
           localStorage.setItem(STORAGE_KEY, next);
           applyLanguage(next);
+        });
+      }
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const navActions = document.getElementById("nav-actions");
+      const mobileNavQuery = window.matchMedia("(max-width: 640px)");
+
+      function setMenuOpen(isOpen) {
+        if (!menuToggle || !navActions) return;
+        menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        navActions.classList.toggle("is-open", isOpen);
+      }
+
+      if (menuToggle && navActions) {
+        menuToggle.addEventListener("click", function () {
+          const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+          setMenuOpen(!isOpen);
+        });
+
+        navActions.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            if (mobileNavQuery.matches) setMenuOpen(false);
+          });
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && mobileNavQuery.matches) setMenuOpen(false);
+        });
+
+        mobileNavQuery.addEventListener("change", function (event) {
+          if (!event.matches) setMenuOpen(false);
         });
       }
 
