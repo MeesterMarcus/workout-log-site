@@ -419,6 +419,7 @@
         <p class="reveal" data-i18n="heroSubtitle">IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
         <div class="hero-cta reveal">
           <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="heroCtaPrimary">Download on the App Store</a>
+          <a class="btn-secondary" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link data-i18n="heroCtaAndroid">Get it on Google Play</a>
           <a class="btn-secondary" href="#features" data-i18n="heroCtaSecondary">See what it does</a>
         </div>
       </div>
@@ -507,6 +508,7 @@
       </div>
       <div class="hero-cta">
         <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="ctaPrimary">View on the App Store</a>
+        <a class="btn-secondary" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link data-i18n="ctaAndroid">Get it on Google Play</a>
         <a class="btn-secondary" href="support/" data-i18n="ctaSecondary">Open support</a>
       </div>
     </section>
@@ -525,6 +527,7 @@
         en: "https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202",
         es: "https://apps.apple.com/es/app/repvault-simple-workout-log/id6741048202"
       };
+      const PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog";
       const translations = {
         en: {
           pageTitle: "IronStack - Simple & Free Workout Tracker",
@@ -537,6 +540,7 @@
           heroTitle: "Build. Log. Progress.",
           heroSubtitle: "IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.",
           heroCtaPrimary: "Download on the App Store",
+          heroCtaAndroid: "Get it on Google Play",
           heroCtaSecondary: "See what it does",
           builderTitle: "Workout Builder",
           builderHeading: "Create a Session",
@@ -571,6 +575,7 @@
           ctaTitle: "Start logging today",
           ctaSubtitle: "Create workouts, log sets and reps, and track PRs in one place.",
           ctaPrimary: "View on the App Store",
+          ctaAndroid: "Get it on Google Play",
           ctaSecondary: "Open support",
           footerRights: "\u00a9 2026 IronStack. All rights reserved.",
           footerSupport: "Support",
@@ -590,6 +595,7 @@
           heroTitle: "Crea. Registra. Progresa.",
           heroSubtitle: "IronStack es una app para seguimiento de entrenamiento de fuerza con creaci\u00f3n r\u00e1pida de rutinas, una biblioteca completa de ejercicios y progreso claro.",
           heroCtaPrimary: "Desc\u00e1rgala en App Store",
+          heroCtaAndroid: "Cons\u00edguela en Google Play",
           heroCtaSecondary: "Ver funciones",
           builderTitle: "Creador de rutinas",
           builderHeading: "Crea una sesi\u00f3n",
@@ -624,6 +630,7 @@
           ctaTitle: "Empieza a registrar hoy",
           ctaSubtitle: "Crea rutinas, registra series y repeticiones, y sigue tus PR en un solo lugar.",
           ctaPrimary: "Ver en App Store",
+          ctaAndroid: "Cons\u00edguela en Google Play",
           ctaSecondary: "Abrir soporte",
           footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
           footerSupport: "Soporte",
@@ -658,6 +665,9 @@
         });
         document.querySelectorAll("a[data-appstore-link]").forEach(function (link) {
           link.setAttribute("href", lang === "es" ? APP_STORE_LINKS.es : APP_STORE_LINKS.en);
+        });
+        document.querySelectorAll("a[data-playstore-link]").forEach(function (link) {
+          link.setAttribute("href", PLAY_STORE_LINK);
         });
         const toggle = document.getElementById("lang-toggle");
         if (toggle) {
