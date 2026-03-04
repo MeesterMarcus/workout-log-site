@@ -554,6 +554,11 @@
         es: "https://apps.apple.com/es/app/repvault-simple-workout-log/id6741048202"
       };
       const PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog";
+      // Optional Google Ads conversion labels. Fill these with values like "AW-123456789/AbCdEfGhIjK".
+      const ADS_SEND_TO = {
+        ios: "",
+        android: ""
+      };
       const translations = {
         en: {
           pageTitle: "IronStack - Simple & Free Workout Tracker",
@@ -707,8 +712,42 @@
         }
       }
 
+      function fireAdsConversion(sendTo) {
+        if (!sendTo || typeof window.gtag !== "function") return;
+        window.gtag("event", "conversion", { send_to: sendTo });
+      }
+
+      function trackStoreClick(platform, destination) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "store_click", {
+            event_category: "engagement",
+            event_label: destination,
+            platform: platform
+          });
+        }
+        fireAdsConversion(platform === "ios" ? ADS_SEND_TO.ios : ADS_SEND_TO.android);
+      }
+
+      function attachStoreClickTracking() {
+        document.querySelectorAll("a[data-appstore-link]").forEach(function (link) {
+          if (link.dataset.trackBound === "true") return;
+          link.dataset.trackBound = "true";
+          link.addEventListener("click", function () {
+            trackStoreClick("ios", "app_store");
+          });
+        });
+        document.querySelectorAll("a[data-playstore-link]").forEach(function (link) {
+          if (link.dataset.trackBound === "true") return;
+          link.dataset.trackBound = "true";
+          link.addEventListener("click", function () {
+            trackStoreClick("android", "google_play");
+          });
+        });
+      }
+
       const initialLanguage = getDefaultLanguage();
       applyLanguage(initialLanguage);
+      attachStoreClickTracking();
 
       const toggle = document.getElementById("lang-toggle");
       if (toggle) {
