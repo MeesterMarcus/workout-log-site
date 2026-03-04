@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://workout-log-site.pages.dev/sitemap.xml
