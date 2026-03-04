@@ -202,6 +202,11 @@
       font-weight: 500;
       color: var(--text);
     }
+    .store-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
     .hero-card {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -418,8 +423,14 @@
         <h1 class="reveal" data-i18n="heroTitle">Build. Log. Progress.</h1>
         <p class="reveal" data-i18n="heroSubtitle">IronStack is a strength training tracker with fast workout creation, a deep exercise library, and clear progress tracking.</p>
         <div class="hero-cta reveal">
-          <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="heroCtaPrimary">Download on the App Store</a>
-          <a class="btn-secondary" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link data-i18n="heroCtaAndroid">Get it on Google Play</a>
+          <a class="btn-primary store-link" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link>
+            <i class="fa-brands fa-apple" aria-hidden="true"></i>
+            <span data-i18n="heroCtaPrimary">Download on the App Store</span>
+          </a>
+          <a class="btn-secondary store-link" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link>
+            <i class="fa-brands fa-google-play" aria-hidden="true"></i>
+            <span data-i18n="heroCtaAndroid">Get it on Google Play</span>
+          </a>
           <a class="btn-secondary" href="#features" data-i18n="heroCtaSecondary">See what it does</a>
         </div>
       </div>
@@ -507,8 +518,14 @@
         <p class="section-sub" data-i18n="ctaSubtitle">Create workouts, log sets and reps, and track PRs in one place.</p>
       </div>
       <div class="hero-cta">
-        <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link data-i18n="ctaPrimary">View on the App Store</a>
-        <a class="btn-secondary" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link data-i18n="ctaAndroid">Get it on Google Play</a>
+        <a class="btn-primary store-link" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link>
+          <i class="fa-brands fa-apple" aria-hidden="true"></i>
+          <span data-i18n="ctaPrimary">View on the App Store</span>
+        </a>
+        <a class="btn-secondary store-link" href="https://play.google.com/store/apps/details?id=com.meestermarcus.workoutlog" data-playstore-link>
+          <i class="fa-brands fa-google-play" aria-hidden="true"></i>
+          <span data-i18n="ctaAndroid">Get it on Google Play</span>
+        </a>
         <a class="btn-secondary" href="support/" data-i18n="ctaSecondary">Open support</a>
       </div>
     </section>
