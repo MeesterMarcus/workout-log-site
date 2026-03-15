@@ -3,8 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IronStack - Free Workout Tracker, Pro One-Time Upgrade</title>
+  <title>IronStack — Free Workout Tracker & Logger | No Subscription, No Ads</title>
+  <meta name="description" content="IronStack is a free workout tracker for iOS and Android. Log workouts offline, track PRs, build custom exercises, and get AI coaching — no ads, no subscription. Optional one-time Pro upgrade available." />
+  <link rel="canonical" href="https://workout-log-site.pages.dev/" />
   <link rel="icon" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://workout-log-site.pages.dev/" />
+  <meta property="og:site_name" content="IronStack" />
+  <meta property="og:title" content="IronStack — Free Workout Tracker, No Subscription" />
+  <meta property="og:description" content="Log workouts free with no ads. Track PRs, build custom exercises, and get AI coaching. One-time Pro upgrade available — no subscription ever." />
+  <meta property="og:image" content="https://workout-log-site.pages.dev/assets/en/slice-1.webp" />
+  <meta property="og:image:alt" content="IronStack workout tracker app screenshot" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IronStack — Free Workout Tracker, No Subscription" />
+  <meta name="twitter:description" content="Log workouts free with no ads. Track PRs, build custom exercises, and get AI coaching. One-time Pro upgrade available — no subscription ever." />
+  <meta name="twitter:image" content="https://workout-log-site.pages.dev/assets/en/slice-1.webp" />
+  <meta name="twitter:image:alt" content="IronStack workout tracker app screenshot" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCNGLDQZV8"></script>
@@ -583,6 +600,44 @@
       #previews .preview-grid img { cursor: zoom-in; }
     }
   </style>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "IronStack",
+    "description": "Free workout tracker for iOS and Android. Log workouts offline, track PRs, build custom exercises, and unlock AI coaching with an optional one-time Pro upgrade. No ads, no subscription.",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "HealthApplication",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "name": "Free"
+      },
+      {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "name": "Pro (one-time purchase)"
+      }
+    ],
+    "url": "https://workout-log-site.pages.dev/",
+    "downloadUrl": "https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202",
+    "inLanguage": ["en", "es"],
+    "featureList": [
+      "Offline workout logging",
+      "PR and progress tracking",
+      "AI workout generation",
+      "AI coaching feedback",
+      "Custom exercises",
+      "Apple Watch support",
+      "No ads",
+      "No subscription required"
+    ]
+  }
+  </script>
 </head>
 <body>
   <div class="grain"></div>
@@ -621,7 +676,7 @@
     <section class="hero">
       <div>
         <div class="pill" data-i18n="heroPill">Free version, no ads, offline-friendly</div>
-        <h1 class="reveal" data-i18n="heroTitle">Train Better Without Monthly Fees</h1>
+        <h1 class="reveal" data-i18n="heroTitle">Free Workout Tracker — No Subscription, No Ads</h1>
         <p class="reveal" data-i18n="heroSubtitle">Use IronStack for free with no ads. Power users can optionally unlock Pro once for advanced tools, AI features, and unlimited workouts.</p>
         <div class="hero-cta reveal">
           <a class="btn-primary store-link" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202" data-appstore-link>
@@ -703,18 +758,18 @@
       <p class="section-sub" data-i18n="previewsSubtitle">Phone and Apple Watch snapshots of the IronStack experience.</p>
       <div class="preview-grid">
         <figure class="phone-shot reveal">
-          <img src="assets/en/slice-1.webp" data-src-en="assets/en/slice-1.webp" data-src-es="assets/es/slice-1.webp" alt="Workout builder screen" data-i18n-alt="previewAlt1" loading="lazy" decoding="async" />
+          <img src="assets/en/slice-1.webp" data-src-en="assets/en/slice-1.webp" data-src-es="assets/es/slice-1.webp" alt="IronStack workout builder — create a session with exercises, sets, and reps" data-i18n-alt="previewAlt1" loading="lazy" decoding="async" />
           <figcaption data-i18n="previewCaption1">Build your session quickly with clean, focused controls.</figcaption>
         </figure>
         <figure class="phone-shot reveal">
-          <img src="assets/en/slice-2.webp" data-src-en="assets/en/slice-2.webp" data-src-es="assets/es/slice-2.webp" alt="Workout tracking and history screen" data-i18n-alt="previewAlt2" loading="lazy" decoding="async" />
+          <img src="assets/en/slice-2.webp" data-src-en="assets/en/slice-2.webp" data-src-es="assets/es/slice-2.webp" alt="IronStack workout tracking and history — log sets and review PRs" data-i18n-alt="previewAlt2" loading="lazy" decoding="async" />
           <figcaption data-i18n="previewCaption2">Log sets fast, review PRs, and unlock AI coaching when you need guidance.</figcaption>
         </figure>
         <figure class="watch-shot reveal">
           <div class="watch-stage">
             <div class="watch-frame">
               <div class="watch-case">
-                <img src="assets/en/watch.PNG" data-src-en="assets/en/watch.PNG" data-src-es="assets/en/watch.PNG" alt="Apple Watch workout screen" data-i18n-alt="previewAlt3" loading="lazy" decoding="async" />
+                <img src="assets/en/watch.PNG" data-src-en="assets/en/watch.PNG" data-src-es="assets/en/watch.PNG" alt="IronStack on Apple Watch — log sets and reps from your wrist" data-i18n-alt="previewAlt3" loading="lazy" decoding="async" />
               </div>
             </div>
           </div>
@@ -772,14 +827,14 @@
       };
       const translations = {
         en: {
-          pageTitle: "IronStack - Free Workout Tracker, Pro One-Time Upgrade",
+          pageTitle: "IronStack — Free Workout Tracker & Logger | No Subscription, No Ads",
           logoAlt: "IronStack logo",
           navFeatures: "Features",
           navWorkflow: "Workflow",
           navSupport: "Support",
           navPrivacy: "Privacy",
           heroPill: "Free version, no ads, offline-friendly",
-          heroTitle: "Train Better Without Monthly Fees",
+          heroTitle: "Free Workout Tracker — No Subscription, No Ads",
           heroSubtitle: "Use IronStack for free with no ads. Power users can optionally unlock Pro once for advanced tools, AI features, and unlimited workouts.",
           heroCtaPrimary: "Download on the App Store",
           heroCtaAndroid: "Get it on Google Play",
@@ -810,9 +865,9 @@
           flow3Text: "Train without internet and build custom exercises that match your routine.",
           previewsTitle: "See IronStack in action.",
           previewsSubtitle: "Phone and Apple Watch snapshots of the IronStack experience.",
-          previewAlt1: "Workout builder screen",
-          previewAlt2: "Workout tracking and history screen",
-          previewAlt3: "Apple Watch workout screen",
+          previewAlt1: "IronStack workout builder — create a session with exercises, sets, and reps",
+          previewAlt2: "IronStack workout tracking and history — log sets and review PRs",
+          previewAlt3: "IronStack on Apple Watch — log sets and reps from your wrist",
           previewCaption1: "Build your session quickly with clean, focused controls.",
           previewCaption2: "Log sets fast, review PRs, and unlock AI coaching when you need guidance.",
           previewCaption3: "Log sets, reps, and workout progress directly from your Apple Watch.",
