@@ -6,6 +6,21 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://workout-log-site.pages.dev/pro/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://workout-log-site.pages.dev/vs-hevy/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://workout-log-site.pages.dev/vs-strong/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://workout-log-site.pages.dev/support/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
