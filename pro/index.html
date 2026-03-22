@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IronStack Pro — One-Time $19.99 Lifetime Upgrade | No Subscription</title>
-  <meta name="description" content="IronStack Pro is a one-time $19.99 lifetime purchase. Unlock AI coaching, advanced analytics, unlimited workouts, a visual plate calculator, and more — no subscription, ever." />
+  <title>IronStack Pro — Plans &amp; Pricing | Monthly, Yearly, or Lifetime</title>
+  <meta name="description" content="IronStack Pro starts at $2.99/mo. Choose monthly, yearly ($19.99/yr), or a one-time lifetime upgrade ($39.99). Unlock AI coaching, advanced analytics, unlimited workouts, and a visual plate calculator." />
   <link rel="canonical" href="https://workout-log-site.pages.dev/pro/" />
   <link rel="icon" href="../assets/logo.png" />
   <link rel="apple-touch-icon" href="../assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://workout-log-site.pages.dev/pro/" />
   <meta property="og:site_name" content="IronStack" />
-  <meta property="og:title" content="IronStack Pro — One-Time $19.99 Lifetime Upgrade" />
-  <meta property="og:description" content="IronStack Pro unlocks AI coaching, unlimited workouts, advanced analytics, and a visual plate calculator for a single one-time payment of $19.99." />
+  <meta property="og:title" content="IronStack Pro — Plans &amp; Pricing" />
+  <meta property="og:description" content="IronStack Pro starts at $2.99/mo. Choose monthly, yearly ($19.99/yr), or a one-time lifetime upgrade ($39.99). Unlock AI coaching, unlimited workouts, analytics, and more." />
   <meta property="og:image" content="https://workout-log-site.pages.dev/assets/en/slice-1.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="IronStack Pro — One-Time $19.99 Lifetime Upgrade" />
-  <meta name="twitter:description" content="IronStack Pro unlocks AI coaching, unlimited workouts, advanced analytics, and a visual plate calculator for a single one-time payment of $19.99." />
+  <meta name="twitter:title" content="IronStack Pro — Plans &amp; Pricing" />
+  <meta name="twitter:description" content="IronStack Pro starts at $2.99/mo. Choose monthly, yearly ($19.99/yr), or a one-time lifetime upgrade ($39.99). Unlock AI coaching, unlimited workouts, analytics, and more." />
   <meta name="twitter:image" content="https://workout-log-site.pages.dev/assets/en/slice-1.webp" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TCNGLDQZV8"></script>
@@ -37,7 +37,7 @@
         "name": "How much does IronStack Pro cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "IronStack Pro is a one-time payment of $19.99. There is no subscription, no renewal, and no recurring charges. You pay once and own Pro features for the lifetime of the app."
+          "text": "IronStack Pro offers three options: Monthly at $2.99/mo (auto-renews), Yearly at $19.99/yr (saves 44% vs monthly), or a one-time Lifetime upgrade for $39.99. The Lifetime plan is the best value — pay once and own Pro features forever."
         }
       },
       {
@@ -45,7 +45,7 @@
         "name": "What does IronStack Pro include?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "IronStack Pro includes: AI Coach insights after every workout, advanced analytics and progress tracking, unlimited workout logging (free tier is limited to 3), increased AI generation cap (10 per 12 hours vs 2 on free), and a visual plate calculator."
+          "text": "IronStack Pro includes: AI Coach insights after every workout, advanced analytics and progress tracking, unlimited workout logging (free tier is limited to 3), unlimited AI workout generation, and a visual plate calculator."
         }
       },
       {
@@ -58,10 +58,10 @@
       },
       {
         "@type": "Question",
-        "name": "Is this a subscription?",
+        "name": "Is there a lifetime option?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. IronStack Pro is not a subscription. It is a single one-time purchase of $19.99. You pay once and keep all Pro features forever — no monthly fees, no annual renewals."
+          "text": "Yes. In addition to monthly ($2.99/mo) and yearly ($19.99/yr) subscriptions, IronStack offers a one-time Lifetime upgrade for $39.99. Pay once and keep all Pro features for the lifetime of the app — no renewals ever."
         }
       }
     ]
@@ -75,12 +75,26 @@
     "name": "IronStack Pro",
     "operatingSystem": "iOS, Android",
     "applicationCategory": "HealthApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "19.99",
-      "priceCurrency": "USD",
-      "description": "One-time lifetime upgrade — no subscription"
-    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "2.99",
+        "priceCurrency": "USD",
+        "description": "Monthly subscription"
+      },
+      {
+        "@type": "Offer",
+        "price": "19.99",
+        "priceCurrency": "USD",
+        "description": "Yearly subscription — saves 44% vs monthly"
+      },
+      {
+        "@type": "Offer",
+        "price": "39.99",
+        "priceCurrency": "USD",
+        "description": "One-time lifetime upgrade — best value"
+      }
+    ],
     "url": "https://workout-log-site.pages.dev/pro/"
   }
   </script>
@@ -196,6 +210,34 @@
     }
     .section-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 10px; }
     .section-sub { color: var(--muted); margin: 0 0 30px; font-size: 1.05rem; }
+    /* Pricing cards */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 28px auto; max-width: 760px; }
+    .plan-card {
+      background: var(--panel); border: 1px solid var(--line);
+      border-radius: 20px; padding: 24px 20px; text-align: center;
+      transition: transform 0.2s ease, border 0.2s ease;
+      position: relative;
+    }
+    .plan-card:hover { transform: translateY(-4px); border-color: rgba(58, 96, 144, 0.4); }
+    .plan-card.featured {
+      background: linear-gradient(135deg, var(--accent), #1c3450);
+      color: #fff; border-color: transparent;
+      box-shadow: 0 20px 50px rgba(58, 96, 144, 0.3);
+    }
+    .plan-badge {
+      display: inline-block; background: rgba(255,255,255,0.22);
+      border-radius: 999px; padding: 3px 12px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .plan-card:not(.featured) .plan-badge { background: rgba(58,96,144,0.1); color: var(--accent); }
+    .plan-name { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .plan-price { font-size: 2.4rem; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+    .plan-period { font-size: 0.85rem; opacity: 0.75; margin-top: 3px; }
+    .plan-note { font-size: 0.82rem; margin-top: 8px; opacity: 0.8; }
+    .plan-card:not(.featured) .plan-price { color: var(--text); }
+    .plan-card:not(.featured) .plan-period { color: var(--muted); }
+    .plan-card:not(.featured) .plan-note { color: var(--muted); }
     /* Comparison table */
     .compare-table {
       width: 100%; border-collapse: collapse; border-radius: 18px; overflow: hidden;
@@ -313,12 +355,27 @@
       <div class="hero-badge">
         <span class="pill"><i class="fa-solid fa-crown" style="margin-right:8px;color:var(--accent)"></i>IronStack Pro</span>
       </div>
-      <h1>Pay once.<br>Own it forever.</h1>
-      <p>No subscription. No renewal. IronStack Pro is a single one-time purchase that unlocks advanced features for the lifetime of the app.</p>
-      <div class="price-tag">
-        <span class="price-amount">$19.99</span>
-        <span class="price-label">One-time lifetime purchase</span>
-        <span class="price-sub">No monthly fees &nbsp;·&nbsp; No annual renewals</span>
+      <h1>Choose your plan.</h1>
+      <p>Subscribe monthly or yearly, or pay once for lifetime access. All plans unlock the same Pro features — AI coaching, unlimited workouts, advanced analytics, and a visual plate calculator.</p>
+      <div class="pricing-grid">
+        <div class="plan-card">
+          <div class="plan-badge">Monthly</div>
+          <div class="plan-price">$2.99</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-note">Auto-renews monthly</div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-badge">Yearly</div>
+          <div class="plan-price">$19.99</div>
+          <div class="plan-period">per year</div>
+          <div class="plan-note">Saves 44% vs monthly</div>
+        </div>
+        <div class="plan-card featured">
+          <div class="plan-badge">Lifetime</div>
+          <div class="plan-price">$39.99</div>
+          <div class="plan-period">one-time</div>
+          <div class="plan-note">Best value · Own it forever</div>
+        </div>
       </div>
       <div class="hero-cta">
         <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202">
@@ -341,7 +398,7 @@
             <tr>
               <th>Feature</th>
               <th>Free</th>
-              <th>Pro <span class="pro-head">$19.99 one-time</span></th>
+              <th>Pro <span class="pro-head">from $2.99/mo · $39.99 lifetime</span></th>
             </tr>
           </thead>
           <tbody>
@@ -362,8 +419,8 @@
             </tr>
             <tr>
               <td class="col-feat">AI workout generation</td>
-              <td><span class="muted-val">2 per 12 hours</span></td>
-              <td class="pro-col"><span class="muted-val">10 per 12 hours</span></td>
+              <td><span class="muted-val">3 free tries</span></td>
+              <td class="pro-col"><span class="yes">✓</span> Unlimited</td>
             </tr>
             <tr>
               <td class="col-feat">Visual plate calculator</td>
@@ -373,7 +430,7 @@
             <tr>
               <td class="col-feat">Pricing model</td>
               <td><span class="muted-val">Free tier</span></td>
-              <td class="pro-col"><span class="muted-val">One-time lifetime</span></td>
+              <td class="pro-col"><span class="muted-val">$2.99/mo · $19.99/yr · $39.99 lifetime</span></td>
             </tr>
             <tr>
               <td class="col-feat">Offline friendly</td>
@@ -471,7 +528,7 @@
       <p class="section-sub">You don't need Pro to have a great experience. Everything below is free, forever, with no ads.</p>
       <div class="free-grid">
         <div class="free-item"><i class="fa-solid fa-check"></i> Workout logging (up to 3)</div>
-        <div class="free-item"><i class="fa-solid fa-check"></i> AI workout generation (2 / 12h)</div>
+        <div class="free-item"><i class="fa-solid fa-check"></i> AI workout generation (3 free tries)</div>
         <div class="free-item"><i class="fa-solid fa-check"></i> Workout notes</div>
         <div class="free-item"><i class="fa-solid fa-check"></i> PR tracking</div>
         <div class="free-item"><i class="fa-solid fa-check"></i> Apple Watch</div>
@@ -494,15 +551,15 @@
       <div class="faq-list">
         <div class="faq-item">
           <h3>How much does IronStack Pro cost?</h3>
-          <p>IronStack Pro is a one-time payment of $19.99. There is no subscription, no renewal, and no recurring charge of any kind. You pay once and keep Pro features for the lifetime of the app.</p>
+          <p>IronStack Pro offers three plans: Monthly at $2.99/mo (auto-renews), Yearly at $19.99/yr (saves 44% vs monthly), or a one-time Lifetime upgrade for $39.99. All plans unlock the same Pro features. The Lifetime plan is the best value — pay once and own Pro forever.</p>
         </div>
         <div class="faq-item">
-          <h3>Is this really not a subscription?</h3>
-          <p>Correct. No monthly fee. No annual fee. No trial that converts to a subscription. $19.99 once, and it's yours.</p>
+          <h3>Is there a lifetime option?</h3>
+          <p>Yes. The Lifetime plan is a single one-time payment of $39.99. No renewals, no recurring charges — ever. Neither Hevy nor Strong offer a lifetime option; IronStack does.</p>
         </div>
         <div class="faq-item">
           <h3>What happens if I don't upgrade?</h3>
-          <p>Nothing bad. The free tier works great — no ads, no paywalled nags during workouts, no degraded experience. You're capped at 3 logged workouts, 2 AI generations per 12 hours, and a text-based plate calculator. When you're ready to go deeper, Pro is there.</p>
+          <p>Nothing bad. The free tier works great — no ads, no paywalled nags during workouts, no degraded experience. You're capped at 3 logged workouts, 3 AI generation tries, and a text-based plate calculator. When you're ready to go deeper, Pro is there.</p>
         </div>
         <div class="faq-item">
           <h3>Where do I purchase Pro?</h3>
@@ -522,7 +579,7 @@
     <!-- CTA -->
     <div class="cta-band">
       <h2 class="section-title">Ready to go Pro?</h2>
-      <p>One payment. No subscription. Unlock AI coaching, unlimited workouts, advanced analytics, and a visual plate calculator.</p>
+      <p>From $2.99/mo — or pay once with the Lifetime plan. Unlock AI coaching, unlimited workouts, advanced analytics, and a visual plate calculator.</p>
       <div class="hero-cta">
         <a class="btn-primary" href="https://apps.apple.com/en/app/repvault-simple-workout-log/id6741048202">
           <i class="fa-brands fa-apple" aria-hidden="true"></i> App Store
