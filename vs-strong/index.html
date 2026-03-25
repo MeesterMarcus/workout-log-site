@@ -97,21 +97,21 @@
   </script>
   <style>
     :root {
-      --bg-0: #f2f6fb;
-      --bg-1: #d0dff0;
-      --bg-2: #ffffff;
-      --panel: rgba(255, 255, 255, 0.72);
-      --panel-strong: rgba(208, 223, 240, 0.92);
-      --text: #2f3746;
-      --muted: #4a5d72;
-      --accent: #3a6090;
-      --accent-2: #5580a8;
-      --line: rgba(47, 55, 70, 0.15);
-      --shadow: 0 24px 60px rgba(47, 55, 70, 0.18);
-      --green: #1a7a4a;
-      --green-bg: rgba(26, 122, 74, 0.08);
-      --red: #a63030;
-      --red-bg: rgba(166, 48, 48, 0.08);
+      --bg-0: #F4F7FB;
+      --bg-1: #DBEAFE;
+      --bg-2: #FFFFFF;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: rgba(219, 234, 254, 0.92);
+      --text: #0F172A;
+      --muted: #475569;
+      --accent: #2B5ED2;
+      --accent-2: #4C79D9;
+      --line: rgba(148, 163, 184, 0.35);
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+      --green: #15803D;
+      --green-bg: rgba(21, 128, 61, 0.08);
+      --red: #DC2626;
+      --red-bg: rgba(220, 38, 38, 0.08);
     }
     *, *::before, *::after { box-sizing: border-box; }
     body {
@@ -119,8 +119,8 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(900px 420px at 15% -10%, rgba(58, 96, 144, 0.18), transparent 60%),
-        radial-gradient(700px 380px at 85% 0%, rgba(85, 128, 168, 0.14), transparent 60%),
+        radial-gradient(900px 420px at 15% -10%, rgba(43, 94, 210, 0.18), transparent 60%),
+        radial-gradient(700px 380px at 85% 0%, rgba(76, 121, 217, 0.14), transparent 60%),
         linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2) 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -140,8 +140,8 @@
     .logo-mark {
       width: 40px; height: 40px; border-radius: 12px; background: transparent;
       display: grid; place-items: center;
-      box-shadow: 0 8px 18px rgba(47, 55, 70, 0.18);
-      border: 1px solid rgba(47, 55, 70, 0.12); overflow: hidden;
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(15, 23, 42, 0.12); overflow: hidden;
     }
     .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
     .nav-actions { display: flex; gap: 14px; align-items: center; margin-left: auto; }
@@ -158,7 +158,7 @@
       padding: 13px 18px; font-size: 0.9rem; font-weight: 500; color: var(--text);
       transition: background 0.15s;
     }
-    .dl-menu a:hover { background: rgba(58, 96, 144, 0.07); }
+    .dl-menu a:hover { background: rgba(43, 94, 210, 0.07); }
     .dl-menu a i { color: var(--accent); width: 16px; text-align: center; }
     .pill {
       display: inline-flex; align-items: center; width: fit-content;
@@ -170,12 +170,12 @@
     .pill:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.4); }
     .btn-primary {
       padding: 14px 22px; border-radius: 14px;
-      background: linear-gradient(135deg, var(--accent), #1c3450); color: #ffffff;
-      font-weight: 600; box-shadow: 0 16px 34px rgba(58, 96, 144, 0.28);
+      background: linear-gradient(135deg, var(--accent), #224CAA); color: #ffffff;
+      font-weight: 600; box-shadow: 0 16px 34px rgba(43, 94, 210, 0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: inline-flex; align-items: center; gap: 8px;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 44px rgba(58, 96, 144, 0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 22px 44px rgba(43, 94, 210, 0.4); }
     .btn-secondary {
       padding: 12px 20px; border-radius: 14px; border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.6); font-weight: 500; color: var(--text);
@@ -197,13 +197,13 @@
       width: 100%; border-collapse: collapse; border-radius: 18px; overflow: hidden;
       box-shadow: var(--shadow); background: var(--bg-2); font-size: 0.95rem;
     }
-    .compare-table thead { background: linear-gradient(135deg, var(--accent), #1c3450); color: #fff; }
+    .compare-table thead { background: linear-gradient(135deg, var(--accent), #224CAA); color: #fff; }
     .compare-table th { padding: 16px 20px; text-align: left; font-weight: 600; }
     .compare-table th:not(:first-child) { text-align: center; }
     .compare-table td { padding: 14px 20px; border-bottom: 1px solid var(--line); }
     .compare-table td:not(:first-child) { text-align: center; font-size: 1.1rem; }
     .compare-table tr:last-child td { border-bottom: none; }
-    .compare-table tr:nth-child(even) td { background: rgba(47, 55, 70, 0.03); }
+    .compare-table tr:nth-child(even) td { background: rgba(15, 23, 42, 0.03); }
     .compare-table .col-app { font-weight: 600; }
     .yes { color: var(--green); }
     .no { color: var(--red); opacity: 0.7; }
@@ -216,7 +216,7 @@
       border-radius: 18px; padding: 20px;
       transition: transform 0.2s ease, border 0.2s ease;
     }
-    .feature-card:hover { transform: translateY(-4px); border-color: rgba(58, 96, 144, 0.4); }
+    .feature-card:hover { transform: translateY(-4px); border-color: rgba(43, 94, 210, 0.4); }
     .feature-card i { font-size: 1.4rem; color: var(--accent); margin-bottom: 12px; display: block; }
     .feature-card h3 { margin: 0 0 8px; font-size: 1rem; }
     .feature-card p { margin: 0; color: var(--muted); font-size: 0.93rem; line-height: 1.5; }
@@ -240,7 +240,7 @@
     .cta-band .section-sub { margin: 0; }
     /* Verdict card */
     .verdict {
-      background: var(--panel); border: 1px solid rgba(58, 96, 144, 0.3);
+      background: var(--panel); border: 1px solid rgba(43, 94, 210, 0.3);
       border-radius: 18px; padding: 28px 30px;
     }
     .verdict h3 { color: var(--accent); margin: 0 0 12px; font-size: 1.1rem; }

@@ -17,17 +17,17 @@
   </script>
   <style>
     :root {
-      --bg-0: #f7f6f3;
-      --bg-1: #eef2f7;
-      --bg-2: #ffffff;
-      --panel: rgba(255, 255, 255, 0.7);
-      --panel-strong: rgba(220, 230, 242, 0.9);
-      --text: #1b2a41;
-      --muted: #495466;
-      --accent: #0a78a5;
-      --accent-2: #e07a5f;
-      --line: rgba(27, 42, 65, 0.15);
-      --shadow: 0 24px 60px rgba(27, 42, 65, 0.18);
+      --bg-0: #F4F7FB;
+      --bg-1: #DBEAFE;
+      --bg-2: #FFFFFF;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: rgba(219, 234, 254, 0.92);
+      --text: #0F172A;
+      --muted: #475569;
+      --accent: #2B5ED2;
+      --accent-2: #4C79D9;
+      --line: rgba(148, 163, 184, 0.35);
+      --shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
     }
     *, *::before, *::after { box-sizing: border-box; }
     body {
@@ -35,8 +35,8 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(900px 420px at 15% -10%, rgba(10, 120, 165, 0.18), transparent 60%),
-        radial-gradient(700px 380px at 85% 0%, rgba(224, 122, 95, 0.18), transparent 60%),
+        radial-gradient(900px 420px at 15% -10%, rgba(43, 94, 210, 0.18), transparent 60%),
+        radial-gradient(700px 380px at 85% 0%, rgba(15, 118, 110, 0.18), transparent 60%),
         linear-gradient(180deg, var(--bg-0), var(--bg-1) 45%, var(--bg-2) 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -81,8 +81,8 @@
       background: transparent;
       display: grid;
       place-items: center;
-      box-shadow: 0 8px 18px rgba(27, 42, 65, 0.18);
-      border: 1px solid rgba(27, 42, 65, 0.12);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.18);
+      border: 1px solid rgba(15, 23, 42, 0.12);
       overflow: hidden;
     }
     .logo-mark img {
@@ -152,7 +152,7 @@
     }
     .pill:hover {
       transform: translateY(-2px);
-      border-color: rgba(27, 42, 65, 0.4);
+      border-color: rgba(15, 23, 42, 0.4);
     }
     .header {
       max-width: 900px;
@@ -220,7 +220,7 @@
         border-radius: 16px;
         border: 1px solid var(--line);
         background: var(--panel);
-        box-shadow: 0 14px 28px rgba(27, 42, 65, 0.1);
+        box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
       }
       .nav-actions.is-open { display: flex; }
       .nav-controls { margin-left: auto; }
