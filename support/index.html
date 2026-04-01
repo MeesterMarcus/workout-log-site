@@ -762,6 +762,26 @@
       const submitBtn = document.getElementById("submit-btn");
       const submitStatus = document.getElementById("submit-status");
       const recaptchaTokenInput = document.getElementById("recaptchaToken");
+      const appVersionInput = document.getElementById("appVersion");
+      const queryParams = new URLSearchParams(window.location.search);
+
+      function getQueryParamValue(keys) {
+        for (let i = 0; i < keys.length; i += 1) {
+          const value = String(queryParams.get(keys[i]) || "").trim();
+          if (value) return value;
+        }
+        return "";
+      }
+
+      const urlContext = {
+        appVersion: getQueryParamValue(["app_version", "appVersion"]),
+        build: getQueryParamValue(["build"]),
+        platform: getQueryParamValue(["platform"])
+      };
+
+      if (appVersionInput && urlContext.appVersion && !String(appVersionInput.value || "").trim()) {
+        appVersionInput.value = urlContext.appVersion;
+      }
 
       supportForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -773,12 +793,19 @@
           name: String(formData.get("name") || "").trim(),
           email: String(formData.get("email") || "").trim(),
           category: String(formData.get("category") || "other").trim(),
-          appVersion: String(formData.get("appVersion") || "").trim(),
+          appVersion: String(formData.get("appVersion") || "").trim() || urlContext.appVersion,
           subject: String(formData.get("subject") || "").trim(),
           message: String(formData.get("message") || "").trim(),
           device: String(formData.get("device") || "").trim(),
           locale: document.documentElement.getAttribute("data-lang") || "en"
         };
+
+        if (urlContext.build) {
+          payload.build = urlContext.build;
+        }
+        if (urlContext.platform) {
+          payload.platform = urlContext.platform;
+        }
 
         if (!payload.email || !payload.subject || !payload.message) {
           showStatus(submitStatus, copy.validationRequired, true);
