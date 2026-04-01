@@ -323,6 +323,19 @@
       line-height: 1.35;
       text-align: left;
     }
+    .prefill-note {
+      margin: 0 0 14px;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(43, 94, 210, 0.22);
+      background: rgba(43, 94, 210, 0.08);
+      color: #1f3e8b;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .prefill-note strong {
+      font-weight: 700;
+    }
     .status {
       margin-top: 16px;
       padding: 12px 14px;
@@ -482,6 +495,10 @@
           novalidate
         >
           <input id="recaptchaToken" name="g-recaptcha-response" type="hidden" value="" />
+          <div class="prefill-note" id="prefill-note" hidden>
+            <strong data-i18n="prefillTitle">Heads up:</strong>
+            <span data-i18n="prefillBody">Some fields were prefilled from your app build info in this link. Please review them before sending.</span>
+          </div>
           <div class="form-grid">
             <div class="field">
               <label for="name" data-i18n="labelName">Name</label>
@@ -582,6 +599,8 @@
           submitHelper: "We usually reply by email.",
           checkTitle: "Check ticket status",
           checkSubtitle: "Use your ticket ID and the same email used when you submitted the request.",
+          prefillTitle: "Heads up:",
+          prefillBody: "Some fields were prefilled from your app build info in this link. Please review them before sending.",
           lookupTicketLabel: "Ticket ID",
           lookupEmailLabel: "Email",
           lookupBtn: "Check status",
@@ -639,6 +658,8 @@
           submitHelper: "Normalmente respondemos por correo.",
           checkTitle: "Consultar estado del ticket",
           checkSubtitle: "Usa tu ID de ticket y el mismo correo con el que enviaste la solicitud.",
+          prefillTitle: "Aviso:",
+          prefillBody: "Algunos campos se completaron con la informaci\u00f3n de compilaci\u00f3n de la app en este enlace. Rev\u00edsalos antes de enviar.",
           lookupTicketLabel: "ID de ticket",
           lookupEmailLabel: "Correo",
           lookupBtn: "Consultar estado",
@@ -780,6 +801,7 @@
       const recaptchaTokenInput = document.getElementById("recaptchaToken");
       const appVersionInput = document.getElementById("appVersion");
       const platformInput = document.getElementById("platform");
+      const prefillNote = document.getElementById("prefill-note");
       const queryParams = new URLSearchParams(window.location.search);
 
       function getQueryParamValue(keys) {
@@ -795,6 +817,11 @@
         build: getQueryParamValue(["build"]),
         platform: getQueryParamValue(["platform"])
       };
+      const hasUrlPrefill = Boolean(urlContext.appVersion || urlContext.platform || urlContext.build);
+
+      if (prefillNote) {
+        prefillNote.hidden = !hasUrlPrefill;
+      }
 
       if (appVersionInput && urlContext.appVersion && !String(appVersionInput.value || "").trim()) {
         appVersionInput.value = urlContext.appVersion;
