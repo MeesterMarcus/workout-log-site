@@ -505,6 +505,14 @@
               <label for="appVersion"><span data-i18n="labelAppVersion">App version</span> <span class="optional" data-i18n="optional">(optional)</span></label>
               <input id="appVersion" name="appVersion" type="text" maxlength="60" placeholder="e.g. 1.2.0" />
             </div>
+            <div class="field">
+              <label for="platform"><span data-i18n="labelPlatform">Platform</span> <span class="optional" data-i18n="optional">(optional)</span></label>
+              <select id="platform" name="platform">
+                <option value="" data-i18n="platformUnknown">Select platform</option>
+                <option value="ios" data-i18n="platformIos">iOS</option>
+                <option value="android" data-i18n="platformAndroid">Android</option>
+              </select>
+            </div>
             <div class="field full">
               <label for="subject" data-i18n="labelSubject">Subject</label>
               <input id="subject" name="subject" type="text" required maxlength="180" />
@@ -557,10 +565,14 @@
           labelEmail: "Email",
           labelCategory: "Category",
           labelAppVersion: "App version",
+          labelPlatform: "Platform",
           labelSubject: "Subject",
           labelMessage: "Message",
           labelDevice: "Device details",
           optional: "(optional)",
+          platformUnknown: "Select platform",
+          platformIos: "iOS",
+          platformAndroid: "Android",
           categoryBug: "Bug / issue",
           categoryBilling: "Billing",
           categoryFeature: "Feature request",
@@ -610,10 +622,14 @@
           labelEmail: "Correo",
           labelCategory: "Categor\u00eda",
           labelAppVersion: "Versi\u00f3n de la app",
+          labelPlatform: "Plataforma",
           labelSubject: "Asunto",
           labelMessage: "Mensaje",
           labelDevice: "Detalles del dispositivo",
           optional: "(opcional)",
+          platformUnknown: "Selecciona plataforma",
+          platformIos: "iOS",
+          platformAndroid: "Android",
           categoryBug: "Bug / problema",
           categoryBilling: "Facturaci\u00f3n",
           categoryFeature: "Solicitud de funci\u00f3n",
@@ -763,6 +779,7 @@
       const submitStatus = document.getElementById("submit-status");
       const recaptchaTokenInput = document.getElementById("recaptchaToken");
       const appVersionInput = document.getElementById("appVersion");
+      const platformInput = document.getElementById("platform");
       const queryParams = new URLSearchParams(window.location.search);
 
       function getQueryParamValue(keys) {
@@ -782,6 +799,12 @@
       if (appVersionInput && urlContext.appVersion && !String(appVersionInput.value || "").trim()) {
         appVersionInput.value = urlContext.appVersion;
       }
+      if (platformInput && urlContext.platform && !String(platformInput.value || "").trim()) {
+        const normalizedPlatform = String(urlContext.platform).toLowerCase();
+        if (normalizedPlatform === "ios" || normalizedPlatform === "android") {
+          platformInput.value = normalizedPlatform;
+        }
+      }
 
       supportForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -794,6 +817,7 @@
           email: String(formData.get("email") || "").trim(),
           category: String(formData.get("category") || "other").trim(),
           appVersion: String(formData.get("appVersion") || "").trim() || urlContext.appVersion,
+          platform: String(formData.get("platform") || "").trim() || urlContext.platform,
           subject: String(formData.get("subject") || "").trim(),
           message: String(formData.get("message") || "").trim(),
           device: String(formData.get("device") || "").trim(),
@@ -803,8 +827,8 @@
         if (urlContext.build) {
           payload.build = urlContext.build;
         }
-        if (urlContext.platform) {
-          payload.platform = urlContext.platform;
+        if (!payload.platform) {
+          delete payload.platform;
         }
 
         if (!payload.email || !payload.subject || !payload.message) {
