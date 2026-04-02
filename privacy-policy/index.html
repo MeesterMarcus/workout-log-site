@@ -417,25 +417,6 @@
         return (navigator.language || "").toLowerCase().startsWith("es") ? "es" : "en";
       }
 
-      function appendSupportQueryParams() {
-        const supportKeys = ["app_version", "platform", "build", "install_id"];
-        const currentParams = new URLSearchParams(window.location.search);
-        const supportLinks = document.querySelectorAll('a[href="../support/"]');
-
-        supportLinks.forEach(function (link) {
-          const url = new URL(link.getAttribute("href"), window.location.href);
-          supportKeys.forEach(function (key) {
-            const value = String(currentParams.get(key) || "").trim();
-            if (value) {
-              url.searchParams.set(key, value);
-            }
-          });
-          link.href = url.pathname + url.search + url.hash;
-        });
-      }
-
-      appendSupportQueryParams();
-
       function applyLanguage(lang) {
         const copy = translations[lang] || translations.en;
         document.documentElement.lang = lang === "es" ? "es-MX" : "en";

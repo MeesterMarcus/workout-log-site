@@ -1154,25 +1154,6 @@
         navActions.classList.toggle("is-open", isOpen);
       }
 
-      function appendSupportQueryParams() {
-        const supportKeys = ["app_version", "platform", "build", "install_id"];
-        const currentParams = new URLSearchParams(window.location.search);
-        const supportLinks = document.querySelectorAll('a[href="support/"]');
-
-        supportLinks.forEach(function (link) {
-          const url = new URL(link.getAttribute("href"), window.location.href);
-          supportKeys.forEach(function (key) {
-            const value = String(currentParams.get(key) || "").trim();
-            if (value) {
-              url.searchParams.set(key, value);
-            }
-          });
-          link.href = url.pathname + url.search + url.hash;
-        });
-      }
-
-      appendSupportQueryParams();
-
       if (menuToggle && navActions) {
         menuToggle.addEventListener("click", function () {
           const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
