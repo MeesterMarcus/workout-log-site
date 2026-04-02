@@ -495,6 +495,7 @@
           novalidate
         >
           <input id="recaptchaToken" name="g-recaptcha-response" type="hidden" value="" />
+          <input id="installId" name="install_id" type="hidden" value="" />
           <div class="prefill-note" id="prefill-note" hidden>
             <strong data-i18n="prefillTitle">Heads up:</strong>
             <span data-i18n="prefillBody">Some fields were prefilled from your app build info in this link. Please review them before sending.</span>
@@ -799,6 +800,7 @@
       const submitBtn = document.getElementById("submit-btn");
       const submitStatus = document.getElementById("submit-status");
       const recaptchaTokenInput = document.getElementById("recaptchaToken");
+      const installIdInput = document.getElementById("installId");
       const appVersionInput = document.getElementById("appVersion");
       const platformInput = document.getElementById("platform");
       const prefillNote = document.getElementById("prefill-note");
@@ -815,9 +817,10 @@
       const urlContext = {
         appVersion: getQueryParamValue(["app_version", "appVersion"]),
         build: getQueryParamValue(["build"]),
-        platform: getQueryParamValue(["platform"])
+        platform: getQueryParamValue(["platform"]),
+        installId: getQueryParamValue(["install_id", "installId"])
       };
-      const hasUrlPrefill = Boolean(urlContext.appVersion || urlContext.platform || urlContext.build);
+      const hasUrlPrefill = Boolean(urlContext.appVersion || urlContext.platform || urlContext.build || urlContext.installId);
 
       if (prefillNote) {
         prefillNote.hidden = !hasUrlPrefill;
@@ -831,6 +834,9 @@
         if (normalizedPlatform === "ios" || normalizedPlatform === "android") {
           platformInput.value = normalizedPlatform;
         }
+      }
+      if (installIdInput && urlContext.installId && !String(installIdInput.value || "").trim()) {
+        installIdInput.value = urlContext.installId;
       }
 
       supportForm.addEventListener("submit", async function (event) {
@@ -853,6 +859,9 @@
 
         if (urlContext.build) {
           payload.build = urlContext.build;
+        }
+        if (String(formData.get("install_id") || "").trim() || urlContext.installId) {
+          payload.install_id = String(formData.get("install_id") || "").trim() || urlContext.installId;
         }
         if (!payload.platform) {
           delete payload.platform;
