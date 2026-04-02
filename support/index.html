@@ -803,6 +803,7 @@
       const installIdInput = document.getElementById("installId");
       const appVersionInput = document.getElementById("appVersion");
       const platformInput = document.getElementById("platform");
+      const deviceInput = document.getElementById("device");
       const prefillNote = document.getElementById("prefill-note");
       const queryParams = new URLSearchParams(window.location.search);
 
@@ -818,9 +819,10 @@
         appVersion: getQueryParamValue(["app_version", "appVersion"]),
         build: getQueryParamValue(["build"]),
         platform: getQueryParamValue(["platform"]),
-        installId: getQueryParamValue(["install_id", "installId"])
+        installId: getQueryParamValue(["install_id", "installId"]),
+        deviceModel: getQueryParamValue(["device_model", "deviceModel"])
       };
-      const hasUrlPrefill = Boolean(urlContext.appVersion || urlContext.platform || urlContext.build || urlContext.installId);
+      const hasUrlPrefill = Boolean(urlContext.appVersion || urlContext.platform || urlContext.build || urlContext.installId || urlContext.deviceModel);
 
       if (prefillNote) {
         prefillNote.hidden = !hasUrlPrefill;
@@ -838,6 +840,9 @@
       if (installIdInput && urlContext.installId && !String(installIdInput.value || "").trim()) {
         installIdInput.value = urlContext.installId;
       }
+      if (deviceInput && urlContext.deviceModel && !String(deviceInput.value || "").trim()) {
+        deviceInput.value = urlContext.deviceModel;
+      }
 
       supportForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -853,7 +858,7 @@
           platform: String(formData.get("platform") || "").trim() || urlContext.platform,
           subject: String(formData.get("subject") || "").trim(),
           message: String(formData.get("message") || "").trim(),
-          device: String(formData.get("device") || "").trim(),
+          device: String(formData.get("device") || "").trim() || urlContext.deviceModel,
           locale: document.documentElement.getAttribute("data-lang") || "en"
         };
 
