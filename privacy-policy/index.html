@@ -267,26 +267,46 @@
     <header class="header">
       <h1 data-i18n="privacyTitle">Privacy Policy</h1>
       <p data-i18n="privacySubtitle">Simple, transparent, and built around offline-first training.</p>
+      <p class="header-meta" style="margin-top:8px;color:var(--muted);font-size:0.95rem;" data-i18n="lastUpdated">Last updated: April 2, 2026</p>
     </header>
 
     <section class="card">
       <h2 data-i18n="collectTitle">What we collect</h2>
-      <p data-i18n="collectP1">IronStack does not run analytics, ad tracking, or third-party behavior tracking. We do not sell your data.</p>
+      <p data-i18n="collectP1">IronStack collects limited first-party usage analytics for internal product improvement. We still do not use ad tracking, third-party behavior tracking, or sell your data.</p>
       <p data-i18n="collectP2">Most of your workout data stays on your device. The app is offline-friendly and works without an internet connection for core logging and history.</p>
 
+      <h2 data-i18n="analyticsTitle">Analytics</h2>
+      <p data-i18n="analyticsP1">The app sends lightweight, first-party usage events to our servers. This data is pseudonymous and tied to an install identifier — not to a personal profile. We use it only to understand app usage and improve the product. It is not used for advertising, cross-app tracking, or resale.</p>
+      <p data-i18n="analyticsP2">Examples of events we collect:</p>
+      <ul class="list">
+        <li data-i18n="analyticsLi1">App opens</li>
+        <li data-i18n="analyticsLi2">Workout starts</li>
+        <li data-i18n="analyticsLi3">Workout completions</li>
+        <li data-i18n="analyticsLi4">Paywall views</li>
+        <li data-i18n="analyticsLi5">App version / build version</li>
+        <li data-i18n="analyticsLi6">Device model</li>
+        <li data-i18n="analyticsLi7">Operating system version</li>
+        <li data-i18n="analyticsLi8">Platform</li>
+        <li data-i18n="analyticsLi9">Event timestamps</li>
+        <li data-i18n="analyticsLi10">Limited usage-related event properties</li>
+      </ul>
+
       <h2 data-i18n="serversTitle">When we contact our servers</h2>
-      <p data-i18n="serversP1">IronStack only connects to our servers for two reasons:</p>
+      <p data-i18n="serversP1">IronStack only connects to our servers for a few reasons:</p>
       <ul class="list">
         <li data-i18n="serversLi1">Generate AI workouts and AI training insights when you request them.</li>
         <li data-i18n="serversLi2">Update exercise data, including exercise demo media and related exercise details.</li>
       </ul>
 
       <h2 data-i18n="dataTitle">Your data</h2>
-      <p data-i18n="dataP1">We only send the minimum information needed to complete AI generation requests or load exercise media. We do not store or share your workout history for analytics or advertising.</p>
+      <p data-i18n="dataP1">Most workout data stays on your device. When we do send data to our servers, it is limited usage analytics or the minimum information needed for AI generation or to load exercise media. We do not use workout history for advertising or sell your data.</p>
 
       <h2 data-i18n="healthTitle">HealthKit and CareKit</h2>
-      <p data-i18n="healthP1">If you choose to connect Apple Health, IronStack may read and write workout-related HealthKit data only with your permission. We use this only for Apple Watch integration and to keep your Apple Watch workout data as part of your workout history on your device.</p>
-      <p data-i18n="healthP2">We do not use HealthKit or CareKit data for advertising, marketing, or analytics, and we do not sell Health data to third parties.</p>
+      <p data-i18n="healthP1">If you choose to connect Apple Health, IronStack may read and write workout-related HealthKit data only with your permission. This is used only for Apple Watch integration and to keep Apple Watch workout data as part of your workout history on your device.</p>
+      <p data-i18n="healthP2">HealthKit and CareKit data are not used for analytics, advertising, marketing, or sold to third parties.</p>
+
+      <h2 data-i18n="retentionTitle">Data Retention</h2>
+      <p data-i18n="retentionP1">Analytics data may be retained for up to 540 days to help us analyze trends and improve the product.</p>
 
       <h2 data-i18n="contactTitle">Contact</h2>
       <p><span data-i18n="contactP1">If you have any questions, reach out at </span><a href="mailto:info@lorenzanadesigns.com">info@lorenzanadesigns.com</a>.</p>
@@ -310,18 +330,34 @@
           navSupport: "Support",
           privacyTitle: "Privacy Policy",
           privacySubtitle: "Simple, transparent, and built around offline-first training.",
+          lastUpdated: "Last updated: April 2, 2026",
           collectTitle: "What we collect",
-          collectP1: "IronStack does not run analytics, ad tracking, or third-party behavior tracking. We do not sell your data.",
+          collectP1: "IronStack collects limited first-party usage analytics for internal product improvement. We still do not use ad tracking, third-party behavior tracking, or sell your data.",
           collectP2: "Most of your workout data stays on your device. The app is offline-friendly and works without an internet connection for core logging and history.",
+          analyticsTitle: "Analytics",
+          analyticsP1: "The app sends lightweight, first-party usage events to our servers. This data is pseudonymous and tied to an install identifier — not to a personal profile. We use it only to understand app usage and improve the product. It is not used for advertising, cross-app tracking, or resale.",
+          analyticsP2: "Examples of events we collect:",
+          analyticsLi1: "App opens",
+          analyticsLi2: "Workout starts",
+          analyticsLi3: "Workout completions",
+          analyticsLi4: "Paywall views",
+          analyticsLi5: "App version / build version",
+          analyticsLi6: "Device model",
+          analyticsLi7: "Operating system version",
+          analyticsLi8: "Platform",
+          analyticsLi9: "Event timestamps",
+          analyticsLi10: "Limited usage-related event properties",
           serversTitle: "When we contact our servers",
-          serversP1: "IronStack only connects to our servers for two reasons:",
+          serversP1: "IronStack only connects to our servers for a few reasons:",
           serversLi1: "Generate AI workouts and AI training insights when you request them.",
           serversLi2: "Update exercise data, including exercise demo media and related exercise details.",
           dataTitle: "Your data",
-          dataP1: "We only send the minimum information needed to complete AI generation requests or load exercise media. We do not store or share your workout history for analytics or advertising.",
+          dataP1: "Most workout data stays on your device. When we do send data to our servers, it is limited usage analytics or the minimum information needed for AI generation or to load exercise media. We do not use workout history for advertising or sell your data.",
           healthTitle: "HealthKit and CareKit",
-          healthP1: "If you choose to connect Apple Health, IronStack may read and write workout-related HealthKit data only with your permission. We use this only for Apple Watch integration and to keep your Apple Watch workout data as part of your workout history on your device.",
-          healthP2: "We do not use HealthKit or CareKit data for advertising, marketing, or analytics, and we do not sell Health data to third parties.",
+          healthP1: "If you choose to connect Apple Health, IronStack may read and write workout-related HealthKit data only with your permission. This is used only for Apple Watch integration and to keep Apple Watch workout data as part of your workout history on your device.",
+          healthP2: "HealthKit and CareKit data are not used for analytics, advertising, marketing, or sold to third parties.",
+          retentionTitle: "Data Retention",
+          retentionP1: "Analytics data may be retained for up to 540 days to help us analyze trends and improve the product.",
           contactTitle: "Contact",
           contactP1: "If you have any questions, reach out at ",
           footerRights: "\u00a9 2026 IronStack. All rights reserved.",
@@ -337,20 +373,36 @@
           navSupport: "Soporte",
           privacyTitle: "Aviso de privacidad",
           privacySubtitle: "Simple, transparente y dise\u00f1ado para entrenar sin conexi\u00f3n primero.",
+          lastUpdated: "Última actualización: 2 de abril de 2026",
           collectTitle: "Qu\u00e9 recopilamos",
-          collectP1: "IronStack no usa anal\u00edticas, rastreo publicitario ni seguimiento de comportamiento de terceros. No vendemos tus datos.",
+          collectP1: "IronStack recopila análisis limitados de uso de primera parte para mejorar el producto internamente. Seguimos sin usar seguimiento publicitario, rastreo de comportamiento de terceros, ni vendemos tus datos.",
           collectP2: "La mayor parte de tus datos de entrenamiento se queda en tu dispositivo. La app funciona bien sin conexi\u00f3n para el registro principal y el historial.",
+          analyticsTitle: "Analítica",
+          analyticsP1: "La app envía eventos de uso ligeros de primera parte a nuestros servidores. Estos datos son seudónimos y están vinculados a un identificador de instalación, no a un perfil personal. Los usamos solo para entender el uso de la app y mejorar el producto. No se usan para publicidad, rastreo entre apps ni reventa.",
+          analyticsP2: "Ejemplos de eventos que recopilamos:",
+          analyticsLi1: "Aperturas de la app",
+          analyticsLi2: "Inicio de entrenamientos",
+          analyticsLi3: "Finalizaciones de entrenamientos",
+          analyticsLi4: "Vistas de muro de pago",
+          analyticsLi5: "Versión de la app / versión de compilación",
+          analyticsLi6: "Modelo del dispositivo",
+          analyticsLi7: "Versión del sistema operativo",
+          analyticsLi8: "Plataforma",
+          analyticsLi9: "Marcas de tiempo de eventos",
+          analyticsLi10: "Propiedades limitadas relacionadas con el uso",
           serversTitle: "Cu\u00e1ndo nos conectamos a nuestros servidores",
-          serversP1: "IronStack solo se conecta a nuestros servidores por dos razones:",
-          serversLi1: "Generar rutinas con IA y an\u00e1lisis de entrenamiento con IA cuando t\u00fa lo solicitas.",
+          serversP1: "IronStack solo se conecta a nuestros servidores por algunas razones:",
+          serversLi1: "Generar rutinas con IA y an\u00e1lisis de entrenamiento con IA cuando lo solicitas.",
           serversLi2: "Actualizar datos de ejercicios, incluyendo contenido multimedia de demostraci\u00f3n de ejercicios y detalles relacionados.",
           dataTitle: "Tus datos",
-          dataP1: "Solo enviamos la informaci\u00f3n m\u00ednima necesaria para completar solicitudes de generaci\u00f3n con IA o cargar contenido de ejercicios. No almacenamos ni compartimos tu historial de entrenamiento para anal\u00edtica o publicidad.",
+          dataP1: "La mayor parte de los datos de entrenamiento se quedan en tu dispositivo. Cuando enviamos datos a nuestros servidores, son análisis limitados de uso o la informaci\u00f3n m\u00ednima necesaria para generar IA o cargar contenido de ejercicios. No usamos el historial de entrenamiento para publicidad ni vendemos tus datos.",
           healthTitle: "HealthKit y CareKit",
-          healthP1: "Si decides conectar Apple Health, IronStack puede leer y escribir datos de entrenamiento de HealthKit solo con tu permiso. Esto se usa solo para la integraci\u00f3n con Apple Watch y para mantener los datos de entrenamiento de Apple Watch como parte de tu historial de entrenamientos en tu dispositivo.",
-          healthP2: "No usamos datos de HealthKit o CareKit para publicidad, marketing ni anal\u00edtica, y no vendemos datos de salud a terceros.",
+          healthP1: "Si decides conectar Apple Health, IronStack puede leer y escribir datos de entrenamiento de HealthKit solo con tu permiso. Esto se usa solo para la integraci\u00f3n con Apple Watch y para mantener los datos de entrenamiento de Apple Watch como parte de tu historial en el dispositivo.",
+          healthP2: "Los datos de HealthKit y CareKit no se usan para anal\u00edtica, publicidad, marketing ni se venden a terceros.",
+          retentionTitle: "Retenci\u00f3n de datos",
+          retentionP1: "Los datos de anal\u00edtica pueden conservarse hasta por 540 d\u00edas para ayudarnos a analizar tendencias y mejorar el producto.",
           contactTitle: "Contacto",
-          contactP1: "Si tienes dudas, escr\u00edbenos a ",
+          contactP1: "Si tienes alguna pregunta, escr\u00edbenos a ",
           footerRights: "\u00a9 2026 IronStack. Todos los derechos reservados.",
           footerSupport: "Soporte",
           menuToggleAria: "Mostrar u ocultar el men\u00fa de navegaci\u00f3n",
