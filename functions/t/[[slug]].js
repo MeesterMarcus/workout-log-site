@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+function renderPage() {
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,8 +8,8 @@
   <meta name="description" content="Open a shared IronStack workout template in the app, or install IronStack if you do not have it yet." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="https://ironstack.app/t/" />
-  <link rel="icon" href="../assets/logo.png" />
-  <link rel="apple-touch-icon" href="../assets/logo.png" />
+  <link rel="icon" href="/assets/logo.png" />
+  <link rel="apple-touch-icon" href="/assets/logo.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ironstack.app/t/" />
   <meta property="og:site_name" content="IronStack" />
@@ -36,9 +37,7 @@
       --shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
       --content-width: 720px;
     }
-
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -50,16 +49,13 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     [hidden] {
       display: none !important;
     }
-
     .grain {
       position: fixed;
       inset: 0;
@@ -68,7 +64,6 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
       mix-blend-mode: soft-light;
     }
-
     .page {
       min-height: 100vh;
       padding: 28px 24px 48px;
@@ -76,7 +71,6 @@
       display: grid;
       place-items: center;
     }
-
     .card {
       width: min(100%, var(--content-width));
       background: var(--panel);
@@ -87,7 +81,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .card::before {
       content: "";
       position: absolute;
@@ -97,7 +90,6 @@
       background: radial-gradient(circle, rgba(43, 94, 210, 0.18), transparent 70%);
       pointer-events: none;
     }
-
     .brand {
       display: inline-flex;
       align-items: center;
@@ -106,7 +98,6 @@
       letter-spacing: 0.2px;
       margin-bottom: 28px;
     }
-
     .logo-mark {
       width: 44px;
       height: 44px;
@@ -117,13 +108,11 @@
       background: #fff;
       flex: 0 0 auto;
     }
-
     .logo-mark img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -137,14 +126,12 @@
       font-size: 0.95rem;
       margin-bottom: 18px;
     }
-
     h1 {
       margin: 0 0 14px;
       font-size: clamp(2.2rem, 5vw, 3.6rem);
       line-height: 1.02;
       max-width: 12ch;
     }
-
     .lede {
       margin: 0;
       color: var(--muted);
@@ -152,7 +139,6 @@
       line-height: 1.55;
       max-width: 48ch;
     }
-
     .status {
       margin: 26px 0 0;
       padding: 16px 18px;
@@ -161,14 +147,12 @@
       background: rgba(255, 255, 255, 0.78);
       color: var(--muted);
     }
-
     .status strong {
       display: block;
       color: var(--text);
       margin-bottom: 6px;
       font-size: 1rem;
     }
-
     .slug-chip {
       display: inline-flex;
       align-items: center;
@@ -181,14 +165,12 @@
       font-size: 0.92rem;
       word-break: break-all;
     }
-
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
       margin-top: 26px;
     }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -200,30 +182,25 @@
       font-weight: 600;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
-
     .btn:hover {
       transform: translateY(-2px);
     }
-
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #fff;
       box-shadow: 0 16px 34px rgba(43, 94, 210, 0.28);
     }
-
     .btn-secondary {
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.75);
       color: var(--text);
     }
-
     .fine-print {
       margin: 18px 0 0;
       color: var(--muted);
       font-size: 0.94rem;
       line-height: 1.5;
     }
-
     .spinner {
       width: 18px;
       height: 18px;
@@ -233,25 +210,20 @@
       animation: spin 0.8s linear infinite;
       flex: 0 0 auto;
     }
-
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
-
     @media (max-width: 640px) {
       .page {
         padding: 18px 16px 28px;
       }
-
       .card {
         padding: 22px;
         border-radius: 22px;
       }
-
       .actions {
         flex-direction: column;
       }
-
       .btn {
         width: 100%;
       }
@@ -263,24 +235,20 @@
   <main class="page">
     <section class="card" aria-labelledby="page-title">
       <a class="brand" href="/" aria-label="IronStack home">
-        <span class="logo-mark"><img src="../assets/logo.png" alt="IronStack logo" width="44" height="44" /></span>
+        <span class="logo-mark"><img src="/assets/logo.png" alt="IronStack logo" width="44" height="44" /></span>
         <span>IronStack</span>
       </a>
-
       <div class="eyebrow">
         <span class="spinner" aria-hidden="true"></span>
         <span id="eyebrow-text">Trying to open IronStack...</span>
       </div>
-
       <h1 id="page-title">Open Workout Template</h1>
       <p class="lede">This shared workout template is meant to open in IronStack.</p>
-
-      <div class="status" id="status-card">
+      <div class="status">
         <strong id="status-title">Opening the app</strong>
         <span id="status-body">If IronStack is installed, this template should open automatically.</span>
         <div class="slug-chip" id="slug-chip" hidden></div>
       </div>
-
       <div class="actions" id="fallback-actions" hidden>
         <a class="btn btn-primary" id="open-in-app" href="#">
           <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
@@ -295,11 +263,9 @@
           <span>Get it on Google Play</span>
         </a>
       </div>
-
       <p class="fine-print" id="fine-print">If nothing happens, you can open the app manually or install IronStack first.</p>
     </section>
   </main>
-
   <script>
     (function () {
       var FALLBACK_DELAY_MS = 1200;
@@ -342,26 +308,22 @@
         }
       });
 
-      attemptOpen();
+      appLaunchAttempted = true;
+      window.location.href = deepLink;
 
-      function attemptOpen() {
-        appLaunchAttempted = true;
-        window.location.href = deepLink;
+      window.setTimeout(function () {
+        if (pageHiddenDuringAttempt) {
+          return;
+        }
 
-        window.setTimeout(function () {
-          if (pageHiddenDuringAttempt) {
-            return;
-          }
-
-          eyebrowText.textContent = "Open IronStack to continue";
-          statusTitle.textContent = "App not opened automatically";
-          statusBody.textContent = "Open this workout template in IronStack, or install the app if it is not on this device.";
-          fallbackActions.hidden = false;
-        }, FALLBACK_DELAY_MS);
-      }
+        eyebrowText.textContent = "Open IronStack to continue";
+        statusTitle.textContent = "App not opened automatically";
+        statusBody.textContent = "Open this workout template in IronStack, or install the app if it is not on this device.";
+        fallbackActions.hidden = false;
+      }, FALLBACK_DELAY_MS);
 
       function getSlugFromPath(pathname) {
-        var match = pathname.match(/^\/t\/([^/]+)\/?$/);
+        var match = pathname.match(/^\\/t\\/([^/]+)\\/?$/);
         if (!match) {
           return "";
         }
@@ -375,4 +337,14 @@
     }());
   </script>
 </body>
-</html>
+</html>`;
+}
+
+export function onRequestGet() {
+  return new Response(renderPage(), {
+    headers: {
+      "content-type": "text/html; charset=UTF-8",
+      "cache-control": "public, max-age=0, must-revalidate"
+    }
+  });
+}
