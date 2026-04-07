@@ -1040,26 +1040,38 @@
       let previewItems = [];
       let activePreviewIndex = -1;
 
+      function getPreviewFigureState(figure) {
+        const img = figure ? figure.querySelector("img") : null;
+        const captionNode = figure ? figure.querySelector("figcaption") : null;
+        return {
+          isWatch: !!(figure && figure.querySelector(".watch-stage")),
+          imgSrc: img ? img.getAttribute("src") : "",
+          alt: img ? img.getAttribute("alt") : "",
+          caption: captionNode ? captionNode.textContent.trim() : ""
+        };
+      }
+
       function renderActivePreview() {
         if (!previewLightboxMedia || activePreviewIndex < 0 || activePreviewIndex >= previewItems.length) return;
         const item = previewItems[activePreviewIndex];
+        const state = item ? getPreviewFigureState(item.figure) : null;
         previewLightboxMedia.innerHTML = "";
 
-        if (item && item.isWatch) {
+        if (state && state.isWatch) {
           const watchStage = item.figure.querySelector(".watch-stage");
           if (watchStage) {
             const clone = watchStage.cloneNode(true);
             previewLightboxMedia.appendChild(clone);
           }
-        } else if (item && item.imgSrc) {
+        } else if (state && state.imgSrc) {
           const img = document.createElement("img");
           img.className = "lightbox-image";
-          img.setAttribute("src", item.imgSrc);
-          img.setAttribute("alt", item.alt || "");
+          img.setAttribute("src", state.imgSrc);
+          img.setAttribute("alt", state.alt || "");
           previewLightboxMedia.appendChild(img);
         }
 
-        if (previewLightboxCaption) previewLightboxCaption.textContent = item && item.caption ? item.caption : "";
+        if (previewLightboxCaption) previewLightboxCaption.textContent = state && state.caption ? state.caption : "";
       }
 
       function openPreviewLightbox(index) {
@@ -1085,14 +1097,13 @@
       function attachPreviewLightbox() {
         previewItems = [];
         document.querySelectorAll("#previews .preview-grid figure").forEach(function (figure) {
-          const img = figure.querySelector("img");
-          const captionNode = figure.querySelector("figcaption");
+          const state = getPreviewFigureState(figure);
           previewItems.push({
             figure: figure,
-            isWatch: !!figure.querySelector(".watch-stage"),
-            imgSrc: img ? (img.currentSrc || img.getAttribute("src")) : "",
-            alt: img ? img.getAttribute("alt") : "",
-            caption: captionNode ? captionNode.textContent.trim() : ""
+            isWatch: state.isWatch,
+            imgSrc: state.imgSrc,
+            alt: state.alt,
+            caption: state.caption
           });
 
           if (figure.dataset.lightboxBound === "true") return;
@@ -1141,6 +1152,7 @@
           localStorage.setItem(STORAGE_KEY, next);
           applyLanguage(next);
           attachPreviewLightbox();
+          if (previewLightbox && !previewLightbox.hidden) renderActivePreview();
         });
       }
 
