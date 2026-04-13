@@ -91,6 +91,9 @@
       object-fit: contain;
     }
     .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 10px 16px;
       border-radius: 999px;
       font-size: 0.9rem;
@@ -103,6 +106,9 @@
       font: inherit;
       color: inherit;
       cursor: pointer;
+    }
+    .pill i {
+      flex-shrink: 0;
     }
     .nav-actions {
       display: flex;

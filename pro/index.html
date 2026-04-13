@@ -147,11 +147,12 @@
     .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
     .nav-actions { display: flex; gap: 14px; align-items: center; margin-left: auto; }
     .pill {
-      display: inline-flex; align-items: center; width: fit-content;
+      display: inline-flex; align-items: center; gap: 8px; width: fit-content;
       padding: 10px 16px; border-radius: 999px; font-size: 0.9rem; font-weight: 500;
       border: 1px solid var(--line); background: rgba(255, 255, 255, 0.5);
       transition: transform 0.2s ease, border 0.2s ease;
     }
+    .pill i, .btn-primary i, .btn-secondary i { flex-shrink: 0; }
     .pill:hover { transform: translateY(-2px); }
     .btn-primary {
       padding: 14px 24px; border-radius: 14px;
